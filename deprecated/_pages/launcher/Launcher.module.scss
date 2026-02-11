@@ -1,0 +1,202 @@
+.launcherDiv {
+
+    width: 100vw;
+
+    .block01 {
+
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        min-height: 900px;
+
+        .launcherVideo {
+            video {
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                width: 100%;
+                height: 900px;
+                overflow: hidden;
+                object-fit: cover;
+            }
+
+            @media screen and (max-width: 767px) {
+                video {
+                    height: 500px;
+                }
+            }
+        }
+
+        .launcherVideo:after {
+            content: "";
+            background: linear-gradient(300deg,#141312,rgba(20,19,18,0));
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+
+        .labelDiv {
+
+            position: relative;
+            z-index: 1;
+            max-width: 1280px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            .container {
+
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding: 0px 30px;
+
+                .label {
+                    color: var(--white-02-color);
+                    font-size: 100px;
+                    margin: 0;
+                }
+
+                .description {
+                    color: var(--white-01-color);
+                    font-size: 22px;
+                    margin: 0;
+                    margin-top: 10px;
+                    text-align: center;
+                }
+
+                @media screen and (max-width: 767px) {
+                    .label {
+                        font-size: 50px;
+                    }
+                    .description {
+                        font-size: 16px;
+                    }
+                }
+
+                .buttonDiv {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    margin-top: 30px;
+
+                    .downloadButton {
+                        background-color: var(--orange-01-color);
+                        font-size: 22px;
+                        height: 50px;
+                        margin-right: 5px;
+                        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+                        border-radius: 5px;
+
+                        // DropMenuNavigator
+                        div {
+                            h1 {
+                                font-size: 22px;   
+                            }
+                        }
+                    }
+
+                    .downloadButton:hover {
+                        background-color: var(--orange-02-color);
+                    }
+                }
+
+                .launcherVersionText {
+                    color: var(--white-01-color);
+                    font-size: 16px;
+                    margin: 0;
+                    margin-top: 20px;
+                    text-align: center;
+                }
+            }
+
+        }
+    }
+
+    .githubDiv {
+
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        background-color: var(--dark-02-color);
+
+        .container {
+
+            width: 100%;
+            height: 100%;
+            max-width: 1280px;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            padding: 50px 30px;
+
+            .leftDiv {
+                cursor: pointer;
+
+                .githubIconSvg {
+                    width: 60px;
+                    height: 60px;
+                }
+
+                .githubSvg {
+                    width: 200px;
+                    margin-left: 15px;
+                }
+            }
+
+            .rightDiv {
+                .label {
+                    color: var(--white-02-color);
+                    font-size: 18px;
+                    margin: 0;
+                }
+            }
+        }
+
+    }
+
+    @media screen and (max-width: 767px) {
+
+        .block01 {
+            min-height: 500px;
+        }
+
+        .githubDiv {
+            .container {
+                flex-direction: column;
+
+                .leftDiv {
+
+                    .githubIconSvg {
+                        width: 40px;
+                        height: 40px;
+                    }
+    
+                    .githubSvg {
+                        width: 140px;
+                        margin-left: 15px;
+                    }
+                }
+
+                .rightDiv {
+                    margin-top: 20px;
+                    .label {
+                        font-size: 12px;
+                    }
+                }
+            }
+        }
+    }
+
+}

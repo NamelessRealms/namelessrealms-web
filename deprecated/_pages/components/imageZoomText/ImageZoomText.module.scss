@@ -1,0 +1,60 @@
+.imageZoomTextDiv {
+
+    position: relative;
+    cursor: pointer;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+    .imgZoom {
+        position: relative;
+        max-width: 520px;
+        width: 100%;
+        border-radius: 10px;
+        transition: all 0.2s ease-in-out;
+    }
+
+    .imgZoom > span img {
+        border-radius: 10px;
+    }
+
+    .imageZoomTextLabelDiv {
+
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translate(-50%, 20px);
+
+        padding: 10px 20px;
+        background-color: var(--orange-01-color);
+        border-radius: 5px;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+        .label {
+            margin: 0;
+            font-size: 20px;
+            color: var(--white-02-color);
+        }
+    }
+
+}
+
+.imageZoomTextDiv:hover > .imgZoom {
+    transform: scale(1.05);
+}
+
+@media screen and (max-width: 767px) {
+
+    .imageZoomTextDiv {
+
+        .imageZoomTextLabelDiv {
+
+            .label {
+                font-size: 18px;
+            }
+
+        }
+
+    }
+
+}

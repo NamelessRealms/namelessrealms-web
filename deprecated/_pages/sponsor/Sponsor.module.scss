@@ -1,0 +1,258 @@
+.sponsorDiv {
+    width: 100vw;
+
+    .block01 {
+        position: relative;
+        background: linear-gradient(0deg, #e3a508 -1.09%, #ce520c);
+        width: 100%;
+        height: 100%;
+        min-height: 900px;
+
+        .centerDiv {
+            width: 100%;
+            height: 100%;
+            min-height: 900px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            .container {
+                width: 100%;
+                height: 100%;
+                max-width: 1280px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                .leftDiv {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    max-width: 500px;
+
+                    .imgDiv {
+                        width: 250px;
+                        margin-left: 5px;
+                    }
+
+                    .label {
+                        color: var(--white-02-color);
+                        font-size: 100px;
+                        margin: 0;
+                    }
+
+                    .description {
+                        color: var(--white-01-color);
+                        font-size: 22px;
+                        margin: 0;
+                    }
+                }
+
+                .rightDiv {
+                    width: 100%;
+                    // text-align: right;
+                    display: flex;
+                    justify-content: flex-end;
+                    align-items: center;
+                    
+                    .imgDiv {
+                        position: relative;
+                        width: 70%;
+                        // width: 30vw;
+                        height: 100%;
+                        image-rendering: -moz-crisp-edges;
+                        image-rendering: -o-crisp-edges;
+                        image-rendering: pixelated;
+                        image-rendering: -webkit-optimize-contrast;
+                    }
+                }
+
+                .rightDiv {
+                    @media screen and (max-width: 767px) {
+                        img {
+                            display: none;
+                        }
+                    }
+                }
+
+                @media screen and (max-width: 767px) {
+                    .leftDiv {
+                        align-items: center;
+                        padding: 0px 30px;
+
+                        .imgDiv {
+                            width: 150px;
+                            // width: 40%;
+                            margin-left: 0px;
+                        }
+
+                        .label {
+                            font-size: 60px;
+                            text-align: center;
+                        }
+
+                        .description {
+                            font-size: 14px;
+                            text-align: center;
+                        }
+                    }
+
+                    .rightDiv {
+                        display: none;
+                    }
+                }
+            }
+        }
+
+        .bottomDiv {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+
+            .label {
+                font-size: 16px;
+                font-weight: 400;
+                color: var(--white-03-color);
+                margin: 0;
+                white-space: nowrap;
+            }
+        }
+    }
+
+    .block02 {
+
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .container {
+
+            box-sizing: border-box;
+            max-width: 1280px;
+            width: 100%;
+            padding: 100px 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            .label {
+                color: var(--white-02-color);
+                font-size: 45px;
+                margin: 0;
+            }
+
+            .description {
+                max-width: 1000px;
+                color: var(--white-01-color);
+                font-size: 20px;
+                margin: 0;
+                margin-top: 20px;
+                text-align: center;
+            }
+
+            .welfaresDiv {
+
+                margin-top: 100px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 220px;
+
+                .cardTextCenter {
+                    margin: 0px 20px;
+                }
+
+                .cardText {
+                    height: 100%;
+                }
+            }
+        }
+    }
+
+    .block03 {
+
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        background-color: var(--dark-02-color);
+        box-sizing: border-box;
+
+        .container {
+
+            width: 100%;
+            height: 100%;
+            max-width: 1280px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 100px 30px;
+
+            .leftDiv {
+                .label {
+                    font-size: 36px;
+                    color: var(--white-02-color);
+                    margin: 0;
+                }
+            }
+            
+            .rightDiv {
+                .label {
+                    font-size: 36px;
+                    color: var(--white-02-color);
+                    margin: 0;
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width: 1280px) {
+        .block03 {
+
+            .container {
+
+                flex-direction: column;
+            }            
+        }
+    }
+
+    @media screen and (max-width: 767px) {
+
+        .block01 {
+
+            min-height: 500px;
+
+            .centerDiv {
+                min-height: 500px;
+                .container {
+                    justify-content: center;
+                }
+            }
+
+            .bottomDiv {
+                .label {
+                    font-size: 14px;
+                }
+            }
+        }
+
+        .block02 {
+
+            .container {
+
+                .welfaresDiv {
+                    margin-top: 60px;
+                    flex-direction: column;
+                    height: 100%;
+                    .cardTextCenter {
+                        margin: 10px 0px;
+                    }
+                }
+            }
+        }
+    }
+}

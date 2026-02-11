@@ -1,0 +1,185 @@
+.teamDiv {
+
+    width: 100vw;
+
+    .block01 {
+        position: relative;
+        background: var(--blue-02-color);
+        width: 100%;
+        height: 100%;
+        min-height: 900px;
+
+        .centerDiv {
+            width: 100%;
+            height: 100%;
+            min-height: 900px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            .container {
+                width: 100%;
+                height: 100%;
+                max-width: 1280px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 0px;
+
+                .leftDiv {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    max-width: 500px;
+                    width: 100%;
+
+                    img {
+                        width: 250px;
+                        margin-left: 5px;
+                    }
+
+                    .label {
+                        color: var(--white-02-color);
+                        font-size: 100px;
+                        margin: 0;
+                        line-height: 110px;
+                    }
+
+                    .description {
+                        color: var(--white-01-color);
+                        font-size: 22px;
+                        margin: 0;
+                        margin-top: 20px;
+                    }
+                }
+
+                .rightDiv {
+                    width: 100%;
+                    // text-align: right;
+                    display: flex;
+                    justify-content: flex-end;
+                    align-items: center;
+                    
+                    .imgDiv {
+                        position: relative;
+                        width: 95%;
+                        height: 100%;
+                        image-rendering: -moz-crisp-edges;
+                        image-rendering: -o-crisp-edges;
+                        image-rendering: pixelated;
+                        image-rendering: -webkit-optimize-contrast;
+                    }
+                }
+
+                @media screen and (max-width: 1280px) {
+                    .leftDiv {
+                        .label {
+                            font-size: 60px;
+                            line-height: 70px;
+                        }
+                    }
+                }
+
+                @media screen and (max-width: 767px) {
+                    .leftDiv {
+                        align-items: center;
+                        padding: 0px 0px;
+
+                        img {
+                            width: 150px;
+                            margin-left: 0px;
+                        }
+
+                        .label {
+                            font-size: 60px;
+                            text-align: center;
+                            line-height: 70px;
+                        }
+
+                        .description {
+                            font-size: 14px;
+                            text-align: center;
+                        }
+                    }
+
+                    .rightDiv {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+
+    .figureDiv {
+
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+
+        .container {
+
+            width: 100%;
+            height: 100%;
+            max-width: 1280px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 100px 30px;
+            box-sizing: border-box;
+
+            .figureImgDiv {
+
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+
+                img {
+                    width: 100%;
+                }
+
+                .figureLabel {
+                    color: var(--white-02-color);
+                    font-size: 22px;
+                    margin: 0;
+                    margin-top: 20px;
+                }
+            }
+        }
+
+    }
+
+    @media screen and (max-width: 767px) {
+
+        .block01 {
+
+            min-height: 600px;
+
+            .centerDiv {
+                min-height: 600px;
+                .container {
+                    justify-content: center;
+                    padding: 0px 30px;
+                }
+            }
+        }
+
+        .figureDiv {
+
+            .container {
+                flex-direction: column;
+                padding: 0px 0px;
+
+                .figureImgDiv {
+                    margin-bottom: 50px;
+                    .figureLabel {
+                        font-size: 18px;
+                    }
+                }
+            }
+        }
+    }
+
+}

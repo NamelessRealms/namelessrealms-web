@@ -1,0 +1,179 @@
+.topBarDiv {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    z-index: 9999;
+
+    .container {
+        box-sizing: border-box;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: row;
+        padding: 15px 0px;
+        max-width: 1280px;
+        width: 1280px;
+        height: 80px;
+
+        @media screen and (max-width: 1280px) {
+            padding: 15px 30px;
+        }
+
+        .leftDiv {
+            width: 100%;
+
+            .imgDiv {
+                position: relative;
+                cursor: pointer;
+                width: 30%;
+            }
+        }
+
+        @media screen and (max-width: 767px) {
+            .leftDiv {
+                .imgDiv {
+                    width: 80%;
+                }
+            }
+        }
+
+        .centerDiv {
+            height: 100%;
+
+            .inputIcon {
+                background-color: #4a4a4a;
+                border-radius: 5px;
+                width: 500px;
+                height: 100%;
+            }
+        }
+
+        .rightDiv {
+            // height: 100%;
+
+            .buttonDiv {
+                // height: 100%;
+
+                .buttonFocus {
+                    width: 100px;
+                    height: 100%;
+                    background-color: var(--orange-01-color);
+                }
+            }
+
+            .menuDiv {
+                box-sizing: border-box;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: row;
+
+                .dropMenuNavigator {
+                    margin-left: 15px;
+                }
+
+                .buttonFocus {
+                    padding: 10px;
+                    margin-left: 15px;
+                    background-color: transparent;
+                    color: #f2f2f2;
+                }
+
+                .buttonFocus:hover {
+                    background-color: var(--orange-01-color);
+                }
+            }
+
+            @media screen and (min-width: 1280px) {
+                .storageMenuButton {
+                    display: none;
+                }
+            }
+
+            @media screen and (max-width: 1280px) {
+                .menuDiv {
+                    display: none;
+                }
+
+                .storageMenuButton {
+                    border: none;
+                    padding: 0;
+                    background: transparent;
+                }
+            }
+
+            .storageMenuDiv {
+                .storageMenuBackground {
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    background-color: rgba(0, 0, 0, 0.3);
+                    z-index: 9998;
+                }
+
+                .storageMenuContainer {
+                    background-color: var(--dark-03-color);
+                    position: fixed;
+                    top: 0;
+                    right: 0;
+                    bottom: 0;
+                    width: 300px;
+                    z-index: 9999;
+                    box-sizing: border-box;
+                    padding: 25px 25px;
+                    border-radius: 15px 0px 0px 15px;
+
+                    animation-name: storageMenuEnter;
+                    animation-duration: 0.3s;
+
+                    .storageMenuTopBar {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+
+                        .imgDiv {
+                            position: relative;
+                            width: 80%;
+                            // height: 35px;
+                        }
+                    }
+
+                    .storageMenuItems {
+                        margin-top: 50px;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: flex-start;
+
+                        .buttonFocus {
+                            width: 100%;
+                            padding: 10px;
+                            margin-left: 0px;
+                            text-align: left;
+                            background-color: transparent;
+                            color: #f2f2f2;
+                        }
+
+                        .buttonFocus:hover {
+                            background-color: var(--orange-01-color);
+                        }
+                    }
+                }
+            }
+
+            @keyframes storageMenuEnter {
+                from {
+                    opacity: 0;
+                    transform: translate(300px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translate(0);
+                }
+            }
+        }
+    }
+}

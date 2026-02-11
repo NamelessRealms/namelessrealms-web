@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <title>Modern Design Mockup</title>
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #0a0a0a; color: #ffffff; }
+        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.05); }
+        .orange-glow { box-shadow: 0 0 20px rgba(255, 125, 0, 0.2); }
+    </style>
+</head>
+<body class="p-8">
+    <div class="max-w-4xl mx-auto space-y-12">
+        <!-- 標題展示 -->
+        <header class="space-y-4 text-center py-12">
+            <h1 class="text-6xl font-black tracking-tight">Nameless <span class="text-[#ff7d00]">Realms</span></h1>
+            <p class="text-gray-400 text-xl max-w-lg mx-auto leading-relaxed">探索純粹的模組冒險，一個為玩家打造的現代化社群平台。</p>
+        </header>
+
+        <!-- 卡片與組件展示 -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- 申請卡片樣式 -->
+            <div class="glass p-8 rounded-[2rem] space-y-6">
+                <div class="w-12 h-12 bg-[#ff7d00]/10 rounded-2xl flex items-center justify-center">
+                    <div class="w-6 h-6 bg-[#ff7d00] rounded-lg"></div>
+                </div>
+                <h3 class="text-2xl font-bold">白名單申請</h3>
+                <p class="text-gray-400">整合 Discord 驗證，快速加入我們的冒險世界。透過簡潔的步驟完成身分綁定。</p>
+                <button class="w-full bg-[#ff7d00] text-black font-bold py-4 rounded-xl hover:bg-white transition-all">立即開始</button>
+            </div>
+
+            <!-- 文章展示樣式 -->
+            <div class="glass p-8 rounded-[2rem] space-y-6 orange-glow">
+                <span class="bg-[#ff7d00]/10 text-[#ff7d00] px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">最新更新</span>
+                <h3 class="text-2xl font-bold">2.0 版本重大更新</h3>
+                <p class="text-gray-400 text-sm">優化了後台管理介面，並提升了手機裝置的訪問體驗...</p>
+                <div class="pt-4 border-t border-white/5 flex justify-between items-center">
+                    <span class="text-gray-500 text-sm">2026-01-31</span>
+                    <a href="#" class="text-[#ff7d00] font-bold text-sm">閱讀更多 &rarr;</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 按鈕樣式展示 -->
+        <div class="flex flex-wrap gap-4 justify-center">
+            <button class="px-8 py-3 bg-white text-black font-bold rounded-full">主按鈕</button>
+            <button class="px-8 py-3 glass rounded-full hover:bg-white/10 transition-all">次要按鈕</button>
+            <button class="px-8 py-3 border border-[#ff7d00] text-[#ff7d00] rounded-full">外框按鈕</button>
+        </div>
+    </div>
+</body>
+</html>

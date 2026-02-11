@@ -1,0 +1,17 @@
+
+> portal-web@0.1.0 dev
+> next dev -p 3000 -H 0.0.0.0
+
+   ▲ Next.js 14.1.0
+   - Local:        http://localhost:3000
+   - Network:      http://0.0.0.0:3000
+   - Environments: .env
+
+ ✓ Ready in 1268ms
+ ○ Compiling /admin ...
+ ✓ Compiled /admin in 1649ms (501 modules)
+prisma:query SELECT `main`.`WhitelistApplication`.`id`, `main`.`WhitelistApplication`.`gameId`, `main`.`WhitelistApplication`.`discordTag`, `main`.`WhitelistApplication`.`reason`, `main`.`WhitelistApplication`.`status`, `main`.`WhitelistApplication`.`createdAt`, `main`.`WhitelistApplication`.`updatedAt` FROM `main`.`WhitelistApplication` WHERE 1=1 ORDER BY `main`.`WhitelistApplication`.`createdAt` DESC LIMIT ? OFFSET ?
+ ✓ Compiled in 84ms (252 modules)
+ ✓ Compiled / in 156ms (487 modules)
+prisma:query SELECT `main`.`WhitelistApplication`.`id`, `main`.`WhitelistApplication`.`gameId`, `main`.`WhitelistApplication`.`discordTag`, `main`.`WhitelistApplication`.`reason`, `main`.`WhitelistApplication`.`status`, `main`.`WhitelistApplication`.`createdAt`, `main`.`WhitelistApplication`.`updatedAt` FROM `main`.`WhitelistApplication` WHERE 1=1 ORDER BY `main`.`WhitelistApplication`.`createdAt` DESC LIMIT ? OFFSET ?
+ ✓ Compiled /not-found in 69ms (492 modules)

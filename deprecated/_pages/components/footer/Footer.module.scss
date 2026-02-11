@@ -1,0 +1,30 @@
+.footerDiv {
+
+    background-color: var(--dark-01-color);
+    box-sizing: border-box;
+    width: 100%;
+    padding: 50px 30px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .copyrightText {
+        margin: 0;
+        margin-top: 40px;
+        font-weight: 700;
+        font-size: 16px;
+        color: var(--white-01-color);
+    }
+}
+
+@media screen and (max-width: 767px) {
+    
+    .footerDiv {
+        .img {
+            width: 100%;
+        }
+    }
+
+}
