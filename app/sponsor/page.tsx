@@ -62,14 +62,27 @@ export default function SponsorPage() {
             ))}
           </div>
 
-          <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-center gap-12 text-center md:text-left">
-            <div className="space-y-4">
-              <h4 className="text-brand-primary font-black uppercase text-xs tracking-widest">主要贊助管道</h4>
-              <button onClick={() => window.open("#")} className="bg-white text-black px-12 py-5 rounded-2xl font-black italic text-xl hover:bg-brand-primary transition-all uppercase shadow-xl">台灣玩家贊助</button>
+          <div className="pt-12 border-t border-white/5 grid grid-cols-1 md:grid-cols-2 gap-12">
+            <div className="space-y-8 p-12 bg-white/[0.02] border border-white/5 rounded-[3rem] group hover:border-brand-primary/20 transition-all">
+              <div className="space-y-2">
+                <h4 className="text-brand-primary font-black uppercase text-sm tracking-[0.2em]">主要贊助管道</h4>
+                <p className="text-white/40 text-xs font-medium uppercase tracking-widest">Main Donation Channel</p>
+              </div>
+              <div className="py-12 border-2 border-dashed border-white/5 rounded-3xl flex flex-col items-center justify-center space-y-4">
+                <p className="text-white/20 font-black italic uppercase tracking-tighter text-xl">目前暫無開放</p>
+                <p className="text-white/10 text-xs uppercase font-bold tracking-widest text-center px-6">我們正在準備更便捷的贊助方式，敬請期待。</p>
+              </div>
             </div>
-            <div className="space-y-4">
-              <h4 className="text-brand-primary font-black uppercase text-xs tracking-widest">海外贊助管道</h4>
-              <button onClick={() => window.open("#")} className="bg-white/10 text-white px-12 py-5 rounded-2xl font-black italic text-xl hover:bg-white hover:text-black transition-all uppercase border border-white/10">International</button>
+
+            <div className="space-y-8 p-12 bg-white/[0.02] border border-white/5 rounded-[3rem] group hover:border-brand-primary/20 transition-all">
+              <div className="space-y-2">
+                <h4 className="text-brand-primary font-black uppercase text-sm tracking-[0.2em]">海外贊助管道</h4>
+                <p className="text-white/40 text-xs font-medium uppercase tracking-widest">Overseas Donation Channel</p>
+              </div>
+              <div className="py-12 border-2 border-dashed border-white/5 rounded-3xl flex flex-col items-center justify-center space-y-4">
+                <p className="text-white/20 font-black italic uppercase tracking-tighter text-xl">Coming Soon</p>
+                <p className="text-white/10 text-xs uppercase font-bold tracking-widest text-center px-6">Overseas payment methods are being integrated.</p>
+              </div>
             </div>
           </div>
         </section>
