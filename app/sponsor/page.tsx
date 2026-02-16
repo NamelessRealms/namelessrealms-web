@@ -1,9 +1,13 @@
 'use client';
 
+import { useState } from 'react';
 import { Gift, ShieldCheck, Heart, Star, Award } from 'lucide-react';
 import Navbar from "@/components/Navbar";
 
 export default function SponsorPage() {
+  const [selectedPlan, setSelectedPlan] = useState<number | 'custom'>(150);
+  const [customAmount, setCustomAmount] = useState<string>('');
+
   const welfares = [
     { label: "Discord 贊助者身分組", desc: "Discord 伺服器上的贊助者提供了一個特別的身分組。", icon: <Star size={24} /> },
     { label: "永久白名單", desc: "無需擔心，您不會因遊玩時間不足而失去白名單。", icon: <ShieldCheck size={24} /> },
@@ -68,9 +72,81 @@ export default function SponsorPage() {
                 <h4 className="text-brand-primary font-black uppercase text-sm tracking-[0.2em]">主要贊助管道</h4>
                 <p className="text-white/40 text-xs font-medium uppercase tracking-widest">Main Donation Channel</p>
               </div>
-              <div className="py-12 border-2 border-dashed border-white/5 rounded-3xl flex flex-col items-center justify-center space-y-4">
-                <p className="text-white/20 font-black italic uppercase tracking-tighter text-xl">目前暫無開放</p>
-                <p className="text-white/10 text-xs uppercase font-bold tracking-widest text-center px-6">我們正在準備更便捷的贊助方式，敬請期待。</p>
+
+              <div className="space-y-6">
+                <div className="grid grid-cols-2 gap-4">
+                  {[
+                    { amount: 150, label: "純支持" },
+                    { amount: 300, label: "核心贊助" },
+                    { amount: 500, label: "傳奇贊助" },
+                    { amount: 'custom' as const, label: "隨喜支持" },
+                  ].map((option, i) => {
+                    const isActive = selectedPlan === option.amount;
+                    return (
+                      <div
+                        key={i}
+                        onClick={() => setSelectedPlan(option.amount)}
+                        className={`p-6 rounded-2xl text-center transition-all duration-300 group/opt cursor-pointer flex flex-col items-center justify-center min-h-[100px]
+                          ${isActive
+                            ? 'bg-brand-primary/20 border border-brand-primary ring-2 ring-brand-primary scale-[1.02]'
+                            : 'bg-zinc-900/50 border border-white/5 hover:bg-zinc-800/80 hover:border-white/10'}`}
+                      >
+                        {option.amount === 'custom' && isActive ? (
+                          <div className="relative w-full flex items-center justify-center group/input">
+                            <span className="absolute left-0 text-brand-primary font-black italic text-sm">NT$</span>
+                            <input
+                              type="number"
+                              placeholder="150"
+                              min="150"
+                              autoFocus
+                              className="bg-transparent border-b-2 border-brand-primary/30 focus:border-brand-primary w-full text-center text-2xl font-black italic outline-none text-white placeholder:text-white/10 transition-all pl-8 pr-2 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                              value={customAmount}
+                              onChange={(e) => {
+                                const val = e.target.value;
+                                if (val === '' || parseInt(val) >= 0) {
+                                  setCustomAmount(val);
+                                }
+                              }}
+                              onClick={(e) => e.stopPropagation()}
+                            />
+                          </div>
+                        ) : (
+                          <span className={`text-xl font-black italic ${isActive ? 'text-white' : 'text-white/80'}`}>
+                            {option.amount === 'custom' ? '自訂金額' : `NT$ ${option.amount}`}
+                          </span>
+                        )}
+                        <span className="text-[10px] text-white/40 font-bold uppercase tracking-widest mt-1">{option.label}</span>
+                      </div>
+                    );
+                  })}
+                </div>
+
+                {(() => {
+                  const finalAmount = selectedPlan === 'custom' ? customAmount : selectedPlan.toString();
+                  const isCustomBelowMin = selectedPlan === 'custom' && (parseInt(customAmount) < 150);
+                  const isCustomEmpty = selectedPlan === 'custom' && !customAmount;
+                  const isDisabled = isCustomEmpty || isCustomBelowMin;
+
+                  return (
+                    <div className="space-y-3">
+                      <button
+                        disabled={isDisabled}
+                        onClick={() => console.log('準備發送綠界 API，金額:', finalAmount)}
+                        className={`w-full py-5 font-black rounded-2xl transition-all uppercase italic tracking-[0.2em] shadow-lg
+                          ${isDisabled
+                            ? 'bg-zinc-700 text-white/20 cursor-not-allowed shadow-none'
+                            : 'bg-brand-primary text-white hover:bg-orange-400 shadow-brand-primary/20'}`}
+                      >
+                        確認贊助{finalAmount ? ` NT$ ${finalAmount}` : ''}
+                      </button>
+                      {isCustomBelowMin && (
+                        <p className="text-red-500/80 text-[10px] font-black uppercase tracking-widest text-center animate-pulse">
+                          自訂金額最低需為 NT$ 150
+                        </p>
+                      )}
+                    </div>
+                  );
+                })()}
               </div>
             </div>
 
@@ -79,9 +155,28 @@ export default function SponsorPage() {
                 <h4 className="text-brand-primary font-black uppercase text-sm tracking-[0.2em]">海外贊助管道</h4>
                 <p className="text-white/40 text-xs font-medium uppercase tracking-widest">Overseas Donation Channel</p>
               </div>
-              <div className="py-12 border-2 border-dashed border-white/5 rounded-3xl flex flex-col items-center justify-center space-y-4">
-                <p className="text-white/20 font-black italic uppercase tracking-tighter text-xl">Coming Soon</p>
-                <p className="text-white/10 text-xs uppercase font-bold tracking-widest text-center px-6">Overseas payment methods are being integrated.</p>
+
+              <div className="space-y-6">
+                <div className="bg-[#003087]/10 border border-[#003087]/20 rounded-[2.5rem] p-10 flex flex-col items-center text-center space-y-6 group/paypal hover:bg-[#003087]/20 transition-all duration-500">
+                  <div className="w-20 h-20 bg-[#003087] rounded-3xl flex items-center justify-center shadow-[0_0_30px_rgba(0,48,135,0.3)] group-hover/paypal:scale-110 transition-transform">
+                    <img src="https://www.paypalobjects.com/webstatic/mktg/logo/pp_cc_mark_111x69.jpg" alt="PayPal" className="w-12 object-contain brightness-0 invert" />
+                  </div>
+                  <div className="space-y-2">
+                    <h5 className="text-white font-black text-2xl italic tracking-tight">PayPal</h5>
+                    <p className="text-white/40 text-xs font-bold uppercase tracking-widest">International Payment</p>
+                  </div>
+                  <button
+                    // onClick={() => window.open("https://www.paypal.me/liujuhsin", "_blank")}
+                    className="w-full py-4 bg-[#0070ba] text-white font-black rounded-2xl hover:bg-[#005ea6] transition-all uppercase italic tracking-[0.15em] text-sm shadow-lg shadow-[#0070ba]/20"
+                  >
+                    Donate via PayPal
+                  </button>
+                </div>
+
+                {/* <div className="py-8 border-2 border-dashed border-white/5 rounded-3xl flex flex-col items-center justify-center space-y-2 opacity-50">
+                  <p className="text-white/20 font-black italic uppercase tracking-tighter text-sm">Other Methods Coming Soon</p>
+                  <p className="text-white/10 text-[10px] uppercase font-bold tracking-widest">More options are being integrated.</p>
+                </div> */}
               </div>
             </div>
           </div>
