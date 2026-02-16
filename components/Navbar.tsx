@@ -19,7 +19,7 @@ export default function Navbar() {
 
   const serverSubItems = [
     { name: '模組包伺服器', href: '/modServer' },
-    { name: '模組包伺服器 2', href: '/modServer2' },
+    // { name: '模組包伺服器 2', href: '/modServer2' },
   ];
 
   return (

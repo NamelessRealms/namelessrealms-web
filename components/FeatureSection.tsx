@@ -10,7 +10,7 @@ export default function FeatureSection() {
     },
     {
       label: "即將推出，社群啟動器",
-      desc: "我們正在為社群開發專屬的無名啟動器！這款啟動器將提供極速載入與自動化模組同步，旨在為玩家帶來更舒適的遊戲啟動體驗，敬請期待。",
+      desc: "重新定義傳統啟動器。這不僅是一個登入工具，更是專為玩家與伺服主打造的專屬生態圈，將社群連結、伺服器探索、強大模組管理與極簡開服流程完美揉合。",
       img: "/images/launcher.png",
       reverse: true,
     }
@@ -19,8 +19,8 @@ export default function FeatureSection() {
   return (
     <section className="bg-brand-dark">
       {features.map((f, i) => (
-        <div 
-          key={i} 
+        <div
+          key={i}
           className={`flex flex-col ${f.reverse ? 'md:flex-row-reverse' : 'md:flex-row'} min-h-[600px] relative`}
         >
           {/* 移除 background 色塊，改用微妙的邊框裝飾 */}
@@ -41,13 +41,13 @@ export default function FeatureSection() {
           <div className="flex-1 relative overflow-hidden flex items-center justify-center p-12">
             {/* 背景裝飾光暈 - 代替色塊 */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-brand-primary/[0.03] blur-[120px] rounded-full"></div>
-            
+
             <div className="relative w-full h-full max-w-lg aspect-square group">
-                <img 
-                    src={f.img} 
-                    alt={f.label} 
-                    className="w-full h-full object-contain drop-shadow-[0_20px_60px_rgba(255,125,0,0.15)] transform group-hover:scale-105 transition-all duration-1000" 
-                />
+              <img
+                src={f.img}
+                alt={f.label}
+                className="w-full h-full object-contain drop-shadow-[0_20px_60px_rgba(255,125,0,0.15)] transform group-hover:scale-105 transition-all duration-1000"
+              />
             </div>
           </div>
         </div>
