@@ -211,8 +211,13 @@ Nameless Realms 的官方網站，用 Next.js 14 App Router 建置的**內容型
    ⇒ 這道保護目前**沒有守到任何頁面**。要新增後台時記得它已經在守。
 2. ✅ **已解（2026-08-30）**：git remote 已依架構師裁定改為
    `NamelessRealms/namelessrealms-web`。⚠️ 保留編號以免其餘各條錯位。
-3. **`web.log` 已入版控**（`git ls-files` 查得到），而 `.gitignore` 沒擋它。
-4. **`.gitignore` 有兩段重複的 Next.js 樣板**（檔尾又貼了一次 `/node_modules`、`.env` 等）。
+3. ✅ **已解（2026-08-31，F2 收案）**：`web.log` 已移出版控（`git rm --cached`，
+   檔案保留於工作目錄），並在 `.gitignore` 補擋（`# debug` 節，精確檔名）。
+4. ✅ **已解（2026-08-31，F2 收案）**：`.gitignore` 檔尾重複樣板段已刪（43 行 → 38 行）。
+   ⚠️ **經驗（去重前必讀）**：該段**不是純重複**——`.vscode` 與 `.env` 是其中**獨有**條目，
+   上半段只有 `.env*.local`、⛔ 擋不到單純的 `.env`。整段刪除會弄丟 `.env` 的忽略保護
+   ⇒ 直接踩**鐵則 1**（`.env` 存 `DISCORD_CLIENT_SECRET` / webhook URL）。
+   ⇒ 本次是先把兩條併入上半段對應節、再刪該段。**⛔ 日後同類去重一律逐條比對，⛔ 不得整段刪。**
 5. **`yarn.lock` 與 `package-lock.json` 並存**，見上方「套件管理器」。
 6. **工作樹長期帶未 commit 改動**：2026-08-30 實查 `app/layout.tsx`、`app/staff/page.tsx`、
    `components/ServerSection.tsx` 三檔為 modified。⇒ **`git add .` 會把它們一起帶走**。
