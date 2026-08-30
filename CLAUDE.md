@@ -88,9 +88,9 @@ Nameless Realms 的官方網站，用 Next.js 14 App Router 建置的**內容型
 ### 分支與遠端
 
 - **慣例工作分支：`developers`**，⛔ 不是 `main`。遠端兩支都存在。
-- git remote 目前是 `https://github.com/QuasiMkl/MKLMinecraftMods.git`
-  ——⚠️ 與 `package.json` 的 `homepage`（`namelessrealms/namelessrealms-web`）**不一致**。
-  ⛔ 動 remote 前先問架構師，⛔ 不要「順手改對」。
+- git remote 是 `https://github.com/NamelessRealms/namelessrealms-web.git`
+  （✅ 2026-08-30 由架構師裁定改名，原 `QuasiMkl/MKLMinecraftMods.git` 為同一個庫的舊名）。
+  ⛔ 再動 remote 一律先問架構師，⛔ 不要「順手改對」。
 
 ### CI 現況（⚠️ 影響驗收措辭）
 
@@ -209,7 +209,8 @@ Nameless Realms 的官方網站，用 Next.js 14 App Router 建置的**內容型
 
 1. **`middleware.ts` 保護的 `/admin` 路由不存在**——`app/` 底下沒有 `admin/`。
    ⇒ 這道保護目前**沒有守到任何頁面**。要新增後台時記得它已經在守。
-2. **git remote 名稱與專案名不符**：remote = `QuasiMkl/MKLMinecraftMods.git`。
+2. ✅ **已解（2026-08-30）**：git remote 已依架構師裁定改為
+   `NamelessRealms/namelessrealms-web`。⚠️ 保留編號以免其餘各條錯位。
 3. **`web.log` 已入版控**（`git ls-files` 查得到），而 `.gitignore` 沒擋它。
 4. **`.gitignore` 有兩段重複的 Next.js 樣板**（檔尾又貼了一次 `/node_modules`、`.env` 等）。
 5. **`yarn.lock` 與 `package-lock.json` 並存**，見上方「套件管理器」。
