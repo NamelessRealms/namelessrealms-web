@@ -2,11 +2,8 @@
 FROM node:20-alpine AS deps
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
-COPY package.json yarn.lock* package-lock.json* ./
-RUN if [ -f yarn.lock ]; then yarn install --frozen-lockfile; \
-    elif [ -f package-lock.json ]; then npm ci; \
-    else npm install; \
-    fi
+COPY package.json yarn.lock ./
+RUN yarn install --frozen-lockfile
 
 FROM node:20-alpine AS builder
 WORKDIR /app
