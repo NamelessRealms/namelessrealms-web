@@ -107,10 +107,17 @@ Nameless Realms 的官方網站，用 Next.js 14 App Router 建置的**內容型
 
 ### 套件管理器
 
-- 倉庫同時存在 `yarn.lock` 與 `package-lock.json`。Dockerfile 的 deps 階段
-  **優先用 `yarn install --frozen-lockfile`**，但 builder 階段跑的是 `npm run build`。
-- ⇒ 本地一律用 **yarn**（與 image 的依賴解析一致）；
-  ⛔ 不得為了方便跑 `npm install`（會改寫 `package-lock.json`，讓兩份 lock 更分岔）。
+- ✅ **2026-08-31（F4 收案）起，倉庫只有 `yarn.lock` 一份 lock 檔。**
+  `package-lock.json` 已刪除，並由 `.gitignore`（`# dependencies` 節）擋住。
+- Dockerfile 的 deps 階段已收斂為**無條件** `yarn install --frozen-lockfile`
+  （原本的 `npm ci` / `npm install` 分支是永遠走不到的死碼，已一併刪除）。
+  ⚠️ builder 階段**仍是** `RUN npm run build` —— 架構師裁定**不動**：它只執行
+  `package.json` 的 script、⛔ 不需要 lock 檔；改它會動到**真正的發版路徑**，
+  而本 repo 打 tag 就是發版且⛔ 沒有 build CI 可擋。
+- ⇒ 本地一律用 **yarn**（與 image 的依賴解析一致）。
+- ⛔ **不得跑 `npm install`。** ⚠️ **理由已於 F4 改變**：不再是「會讓兩份 lock 更分岔」
+  （已經只剩一份），而是**會讓已刪除的 `package-lock.json` 復活**
+  ——雖然 `.gitignore` 擋著不讓它進版控，但硬碟上多一份無人維護的 lock 仍會誤導後人。
 
 ---
 
@@ -218,7 +225,12 @@ Nameless Realms 的官方網站，用 Next.js 14 App Router 建置的**內容型
    上半段只有 `.env*.local`、⛔ 擋不到單純的 `.env`。整段刪除會弄丟 `.env` 的忽略保護
    ⇒ 直接踩**鐵則 1**（`.env` 存 `DISCORD_CLIENT_SECRET` / webhook URL）。
    ⇒ 本次是先把兩條併入上半段對應節、再刪該段。**⛔ 日後同類去重一律逐條比對，⛔ 不得整段刪。**
-5. **`yarn.lock` 與 `package-lock.json` 並存**，見上方「套件管理器」。
+5. ✅ **已解（2026-08-31，F4 收案）**：`package-lock.json` 已刪除（連硬碟一起），
+   `.gitignore` 補擋，Dockerfile deps 階段收斂為無條件 yarn。詳見上方「套件管理器」。
+   ⚠️ **經驗（驗 `.gitignore` 保護時必讀）**：`git check-ignore` **預設會查 index**，
+   ⇒ 對**已追蹤檔**一律回「不忽略」，拿它驗「某已追蹤檔沒被誤擋」是**空測**
+   （規則寫成 `*lock*` 也照樣回報通過）。**⇒ 這類檢查一律加 `--no-index`，
+   並附負向對照**（故意寫錯規則、證明測得出失敗），⛔ 沒有負向對照就只是換了個指令。
 6. **工作樹長期帶未 commit 改動**：2026-08-30 實查 `app/layout.tsx`、`app/staff/page.tsx`、
    `components/ServerSection.tsx` 三檔為 modified。⇒ **`git add .` 會把它們一起帶走**。
 
