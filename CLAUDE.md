@@ -104,6 +104,18 @@ Nameless Realms 的官方網站，用 Next.js 14 App Router 建置的**內容型
   yarn build
   ```
   ⚠️ `next lint` 預設**不會**因 warning 失敗，所以 `--max-warnings 0` 是必要的，⛔ 不可省。
+- ⛔⛔ **但 `yarn lint` 目前是空測（2026-09-04 F1 實測發現，見 backlog F8）**：
+  本 repo **沒有任何 ESLint 設定檔**（`.eslintrc.json` 於 **2026-02-12** commit `5afda1a`
+  「reorganize project structure and migrate to app router」被刪除），
+  ⇒ `next lint` 會跳出**互動式設定問卷**、無 TTY 輸入即結束，
+  **exit 0 但⛔ 一個檔案都沒 lint**。⚠️ `eslint` 與 `eslint-config-next` 都裝著，缺的只是設定檔。
+  ⇒ ⛔ **在 F8 補好設定並實測「`next lint` 真的會 fail」之前，
+  任何驗收報告⛔ 不得以 `yarn lint` exit 0 作為佐證**——
+  「CI／lint」欄一律據實寫「**exit 0 但未實際 lint（空測）**」，⛔ 不得寫「lint 通過」。
+  ⚠️ 一般原則（本 repo 已踩過兩次）：**`exit 0` ⛔ 不等於「該檢查真的跑了」**
+  ——另一例是 F4 的 `git check-ignore` 對已追蹤檔恆回「不忽略」。
+  ⇒ 凡把某指令當閘門，**必須有一次「它真的會 fail」的負向對照**，
+  ⛔ 沒有負向對照就只是換了個指令。
 
 ### 套件管理器
 
@@ -214,8 +226,17 @@ Nameless Realms 的官方網站，用 Next.js 14 App Router 建置的**內容型
 
 ## ⚠️ 地雷清單（2026-08-30 實查，⛔ 不要「順手修掉」，先問架構師）
 
-1. **`middleware.ts` 保護的 `/admin` 路由不存在**——`app/` 底下沒有 `admin/`。
-   ⇒ 這道保護目前**沒有守到任何頁面**。要新增後台時記得它已經在守。
+1. ⚠️ **`middleware.ts` 保護的 `/admin` 路由仍不存在**——`app/` 底下沒有 `admin/`
+   （F1 的臨時測試路由已於驗收後刪除）。⇒ 這道保護目前**沒有守到任何實際頁面**，
+   要新增後台時記得它已經在守。
+   ✅ **但「它是否有效」已於 2026-09-04（F1 收案）由假設變為實測確認**：三情境全過——
+   未登入被擋（`307` → `/api/auth/signin`）、`ADMIN_DISCORD_ID` 本人可過、
+   假 ID 之下**同一個真 token** 立刻被擋，且重新登入被 `signIn` 拒（session 為空）。
+   ⇒ ⛔ 不必再懷疑它會不會擋；⛔ 但也不要以為它守著某個頁面。
+   ⚠️ **附帶發現**：matcher 是 `/admin/:path*`，它在**路由解析之前**攔截
+   ⇒ 頁面不存在也照樣轉向登入頁（實測臨時路由刪除後仍回 `307`、⛔ 不是 404）
+   ⇒ 它守的是**路徑空間**，⛔ 不只是既有頁面。
+   詳見 `docs/tasks/archive/F1-verification.md`。
 2. ✅ **已解（2026-08-30）**：git remote 已依架構師裁定改為
    `NamelessRealms/namelessrealms-web`。⚠️ 保留編號以免其餘各條錯位。
 3. ✅ **已解（2026-08-31，F2 收案）**：`web.log` 已移出版控（`git rm --cached`，
