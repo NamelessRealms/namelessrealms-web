@@ -270,7 +270,12 @@ Nameless Realms 的官方網站，用 Next.js 14 App Router 建置的**內容型
 ⚠️ **知識庫（vault）在**：`/Users/quasi-pc/Documents/Obsidian Vault/Claude 知識庫/namelessrealms-web/`
 （`WORKSPACE.md` / `BACKLOG.md` / `DECISIONS-ARCHIVE.md`）。
 ⛔ **實作側與稽核側讀不到 vault**（`vault-guard` 強制）——任務包必須自我完備，
-需要的背景直接抄進包裡，⛔ 不得寫「詳見 vault 某檔」。
+**但抄的來源限 repo**（架構師 2026-09-02 裁決 D-1）：本專案⛔ 沒有 spec 主檔，
+規格的等價物是本檔的**程式碼地圖與地雷清單**；前案裁決在
+`docs/tasks/{代號}-plan-review.md`「裁決記錄」欄。
+⛔ **vault 內容不得抄進派工訊息、也不得寫進任務包**（見 `WORKFLOW.md`「vault 讀寫權」），
+⛔ 更不得寫「詳見 vault 某檔」。
+⇒ 子代理需要 vault 裡的東西時，由**主迴圈先寫成 repo 檔**（放 `docs/tasks/`）再派它讀。
 
 ⚠️ **任務代號：`F{n}`**（單一序列 + 型別欄位，⛔ 不是里程碑制）。
 本專案是**完成品**，`M{n}` 會逼出一個假的「M0 專案骨架」。編號規則全文見 `BACKLOG.md` 開頭。
