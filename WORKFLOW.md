@@ -44,8 +44,7 @@
 | **Claude Code**（實作） | 你 IDE 裡的 agent | 依任務包提 Plan → 放行後實作 → 產驗收報告。**只做實作，不接觸知識庫** |
 
 > 關鍵界線：**協作 Claude 不寫實作碼、Claude Code 不自行擴大範圍**。
-> 實體隔離是單向的：知識庫（vault）只有協作 Claude 讀寫；repo 由 Claude Code 實作，
-> 協作 Claude 讀（審計）+ 寫 `docs/tasks/`（交接件）。**Claude Code 連讀 vault 都不碰。**
+> 實體隔離是單向的:repo 由 Claude Code 實作,協作 Claude 讀(審計)+ 寫 `docs/tasks/`(交接件)。
 > （vault 那半句已於 2026-08-24 改判,見下節。）
 
 ### vault 讀寫權(2026-08-24 改判)
