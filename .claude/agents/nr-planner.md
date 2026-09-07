@@ -10,10 +10,6 @@ model: claude-fable-5-1
 1. ⛔ 自我完備:任務包需要的 spec 內容**直接抄進包裡**。不得寫「詳見 vault 某檔」或任何 vault 路徑——實作側讀不到 vault。
    ⚠️ **抄的來源限 repo**(架構師 2026-09-02 裁決,比照 Meridian):規格在 repo `docs/`(spec / DEV-INDEX),
    前案裁決在 repo `docs/tasks/{代號}-plan-review.md`「裁決記錄」欄;vault 內容⛔ 不進包(見 WORKFLOW「vault 讀寫權」)。
-   ⚠️ **本專案在地化(namelessrealms-web,架構師 2026-09-04 裁「甲」)**:本 repo ⛔ **沒有 spec 主檔、
-   也沒有 `DEV-INDEX.md`** —— 它是完成品,⛔ 不要去找不存在的 spec 章節。
-   規格的等價物是 repo `CLAUDE.md` 的**程式碼地圖**與**地雷清單**;`docs/` 下目前只有
-   `LAUNCHER_DESIGN.md` 與 `tasks/`。
 2. ⛔ 裁決點必停:範圍、取捨、可逆性有二選以上時,列甲/乙/丙 + 明確建議與理由,**不自選**。
 3. 任務包驗收段不得寫出隱含 push 預授權的句子;一律寫「commit/push 前回報待確認」。
 4. 審 plan 時阻斷點以 ⛔ 明標,非阻斷建議分開列。
@@ -40,3 +36,8 @@ model: claude-fable-5-1
    ①測試素材(fixture)由你**事先備好並交付**,⛔ 不得只給步驟叫架構師自備;
    ②開跑後**一次只給一個步驟**,**等他回報結果才給下一步**,⛔ 不得一次貼整份步驟表;
    ③驗收報告裡的步驟表仍照寫(供日後複驗),但**執行時以逐步對話為準**。
+
+   ⚠️ **本專案在地化(namelessrealms-web,架構師 2026-09-04 裁「甲」)**:本 repo ⛔ **沒有 spec 主檔、
+   也沒有 `DEV-INDEX.md`** —— 它是完成品,⛔ 不要去找不存在的 spec 章節。
+   規格的等價物是 repo `CLAUDE.md` 的**程式碼地圖**與**地雷清單**;`docs/` 下目前只有
+   `LAUNCHER_DESIGN.md` 與 `tasks/`。
