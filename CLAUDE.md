@@ -104,18 +104,27 @@ Nameless Realms 的官方網站，用 Next.js 14 App Router 建置的**內容型
   yarn build
   ```
   ⚠️ `next lint` 預設**不會**因 warning 失敗，所以 `--max-warnings 0` 是必要的，⛔ 不可省。
-- ⛔⛔ **但 `yarn lint` 目前是空測（2026-09-04 F1 實測發現，見 backlog F8）**：
-  本 repo **沒有任何 ESLint 設定檔**（`.eslintrc.json` 於 **2026-02-12** commit `5afda1a`
-  「reorganize project structure and migrate to app router」被刪除），
-  ⇒ `next lint` 會跳出**互動式設定問卷**、無 TTY 輸入即結束，
-  **exit 0 但⛔ 一個檔案都沒 lint**。⚠️ `eslint` 與 `eslint-config-next` 都裝著，缺的只是設定檔。
-  ⇒ ⛔ **在 F8 補好設定並實測「`next lint` 真的會 fail」之前，
-  任何驗收報告⛔ 不得以 `yarn lint` exit 0 作為佐證**——
-  「CI／lint」欄一律據實寫「**exit 0 但未實際 lint（空測）**」，⛔ 不得寫「lint 通過」。
-  ⚠️ 一般原則（本 repo 已踩過兩次）：**`exit 0` ⛔ 不等於「該檢查真的跑了」**
-  ——另一例是 F4 的 `git check-ignore` 對已追蹤檔恆回「不忽略」。
+- ✅ **`yarn lint` 的空測已於 2026-09-09（F8）解除**：repo 根目錄已有 `.eslintrc.json`
+  （`root: true` + `next/core-web-vitals`），覆蓋範圍寫在 `next.config.js` 的 `eslint.dirs`
+  （`app` / `components` / `data` / `lib` / `middleware.ts`）⇒ **lint 與 build 共用同一份範圍**。
+  ⚠️ 歷史留痕：`.eslintrc.json` 曾於 **2026-02-12** commit `5afda1a` 被刪除，此後 `next lint`
+  會跳出互動式設定問卷、無 TTY 輸入即結束，**exit 0 但⛔ 一個檔案都沒 lint**（F1 實測發現）。
+  ⇒ ✅ **自 F8 起，`yarn lint` 的 exit 0 是有效佐證** —— 但仍須連同負向對照一起引用。
+- ⚠️⚠️ **但⛔ 不得單獨寫「lint 通過」**：F8 依裁決① 丙**明確關閉了
+  `@next/next/no-img-element`**（既有 10 處 `<img>` 未修，見 backlog F9）
+  ⇒ 「CI／lint」欄一律據實寫「**綠，但 `no-img-element` 已 off、10 處未修**」。
+  ⚠️ 該規則在 F9 完成前**對全 repo 不被檢查**。
+- ⚠️ **一般原則（本 repo 已踩過五次）**：**`exit 0` ⛔ 不等於「該檢查真的跑了」**。
+  ① `next lint` 無設定檔 ⇒ exit 0 但一個檔都沒 lint（即 F8 本身）；
+  ② F4 的 `git check-ignore` 對**已追蹤檔**恆回「不忽略」（需 `--no-index`）；
+  ③ `--debug` 的輸出**不寫 stdout**（寫在 `~/.claude/debug/`）⇒ grep stdout 得 0 命中；
+  ④ **zsh 下 `${PIPESTATUS[0]}` 恆為空**（那是 bash 的變數；zsh 為 `pipestatus`、1-based）
+     ⇒ 所有 `exit=` 欄位都沒量到，形式上卻「跑完了」；
+  ⑤ `next lint -f json` **只列有問題的檔**（formatter 輸出前就濾掉沒有 messages 的檔）
+     ⇒ 拿它數檔案當覆蓋證明，會把「這檔很乾淨」與「這檔根本沒被 lint」混為一談。
   ⇒ 凡把某指令當閘門，**必須有一次「它真的會 fail」的負向對照**，
   ⛔ 沒有負向對照就只是換了個指令。
+  ⚠️ 且**負向對照本身也要能證明它量得準** —— 先故意讓指令失敗、確認取得非 0，再開始正式量測。
 
 ### 套件管理器
 
