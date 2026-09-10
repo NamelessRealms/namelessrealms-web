@@ -106,7 +106,10 @@ Nameless Realms 的官方網站，用 Next.js 14 App Router 建置的**內容型
   ⚠️ `next lint` 預設**不會**因 warning 失敗，所以 `--max-warnings 0` 是必要的，⛔ 不可省。
 - ✅ **`yarn lint` 的空測已於 2026-09-09（F8）解除**：repo 根目錄已有 `.eslintrc.json`
   （`root: true` + `next/core-web-vitals`），覆蓋範圍寫在 `next.config.js` 的 `eslint.dirs`
-  （`app` / `components` / `data` / `lib` / `middleware.ts`）⇒ **lint 與 build 共用同一份範圍**。
+  （`app` / `components` / `data` / `middleware.ts`）⇒ **lint 與 build 共用同一份範圍**。
+  ⚠️ F10（2026-09-10 收案）已把 `lib` 從 `eslint.dirs` 拿掉（它是空目錄，加上 `--error-on-unmatched-pattern`
+  會讓本機 lint 假失敗）⇒ **往 `lib/` 放第一個檔時必須把 `'lib'` 加回 `dirs`**，否則 `lib/` 永遠不會被 lint
+  ——設了 `dirs` 就**整個取代** Next 內建預設清單（`["app","pages","components","lib","src"]`），⛔ 不會合併回來。
   ⚠️ 歷史留痕：`.eslintrc.json` 曾於 **2026-02-12** commit `5afda1a` 被刪除，此後 `next lint`
   會跳出互動式設定問卷、無 TTY 輸入即結束，**exit 0 但⛔ 一個檔案都沒 lint**（F1 實測發現）。
   ⇒ ✅ **自 F8 起，`yarn lint` 的 exit 0 是有效佐證** —— 但仍須連同負向對照一起引用。
@@ -190,6 +193,8 @@ Nameless Realms 的官方網站，用 Next.js 14 App Router 建置的**內容型
 - **state 就近**：只被單一視圖使用的 state 下放到該子元件，不留父層。
 - **純函式外置**：不依賴元件 state 的函式放 `lib/`，且同步補測試。
   ⚠️ `lib/` 目前是空的——**第一個放進去的人負責建立慣例**。
+  ⚠️ **並且必須把 `'lib'` 加回 `next.config.js` 的 `eslint.dirs`**（F10 已把它拿掉）——
+  否則 `lib/` 裡的程式碼永遠不會被 lint，且⛔ 沒有任何指令會提醒你。
 
 **C. 去重**
 - 樣式常數/工具字串**複製到第二個檔就必須抽共用**（`lib/` 或 `components/`）。
@@ -234,7 +239,7 @@ Nameless Realms 的官方網站，用 Next.js 14 App Router 建置的**內容型
 | `middleware.ts` | `withAuth` 保護 `/admin/:path*` |
 | `components/` | Navbar / Footer / Hero / HomeHero / Modal / Toast / FeatureRow / FeatureSection / NewsSection / ServerSection / StaffSection / AuthProvider |
 | `data/staff.ts` / `data/news.ts` / `data/modpackHistory.ts` | 靜態內容資料 |
-| `lib/` | ⚠️ **空目錄**（共用邏輯預留位） |
+| `lib/` | ⚠️ **空目錄**（共用邏輯預留位）。⚠️ F10 已把 `lib` 從 `next.config.js` 的 `eslint.dirs` 拿掉 ⇒ **放第一個檔時必須加回**，否則不會被 lint |
 | `docs/LAUNCHER_DESIGN.md` | 啟動器頁設計文件 |
 
 ---
