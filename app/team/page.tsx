@@ -1,5 +1,6 @@
 'use client';
 
+import Image from "next/image";
 import Navbar from "@/components/Navbar";
 
 export default function TeamPage() {
@@ -25,9 +26,11 @@ export default function TeamPage() {
 
           <div className="relative w-full max-w-5xl mx-auto bg-white/[0.02] border border-white/5 rounded-[4rem] overflow-hidden group shadow-2xl">
             <div className="absolute inset-0 bg-gradient-to-t from-brand-dark via-transparent to-transparent z-10 opacity-40"></div>
-            <img
+            <Image
               src="/images/team.png"
               alt="Team"
+              width={1920}
+              height={1080}
               className="w-full h-auto block transform group-hover:scale-105 transition-all duration-1000"
             />
           </div>
@@ -39,9 +42,11 @@ export default function TeamPage() {
               <div className="absolute top-0 right-0 w-32 h-32 bg-brand-primary/5 -translate-y-16 translate-x-16 rounded-full blur-3xl group-hover:bg-brand-primary/20 transition-all"></div>
 
               <div className="w-32 h-32 bg-white/5 rounded-3xl mb-10 overflow-hidden border border-white/10 group-hover:border-brand-primary/50 transition-all shadow-[0_10px_40px_rgba(0,0,0,0.5)]">
-                <img
+                <Image
                   src={staff.img}
                   alt={staff.name}
+                  width={512}
+                  height={512}
                   className="w-full h-full object-cover transform group-hover:scale-110 transition-all duration-700"
                 />
               </div>

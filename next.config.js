@@ -2,6 +2,7 @@
 const nextConfig = {
     output: 'standalone',
     eslint: { dirs: ['app', 'components', 'data', 'middleware.ts'] },
+    images: { unoptimized: true },
     // 如果有其他配置可以加在這裡
 };
 

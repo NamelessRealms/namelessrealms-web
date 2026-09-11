@@ -1,5 +1,7 @@
 'use client';
 
+import Image from 'next/image';
+
 export default function HomeHero() {
   return (
     <section className="relative h-screen flex items-center justify-center overflow-hidden">
@@ -21,7 +23,7 @@ export default function HomeHero() {
       {/* 文字與按鈕 (不再有大盒子) */}
       <div className="relative z-10 text-center space-y-12">
         <div className="flex flex-col items-center space-y-4 animate-in fade-in slide-in-from-bottom-8 duration-1000">
-          <img src="/images/logo.png" alt="Nameless Realms Logo" className="w-32 h-32 md:w-48 md:h-48 object-contain mb-4 drop-shadow-[0_0_30px_rgba(255,125,0,0.3)]" />
+          <Image src="/images/logo.png" alt="Nameless Realms Logo" width={1024} height={1024} className="w-32 h-32 md:w-48 md:h-48 object-contain mb-4 drop-shadow-[0_0_30px_rgba(255,125,0,0.3)]" />
           <h1 className="text-7xl md:text-[10rem] font-black text-white leading-none tracking-tighter uppercase italic drop-shadow-[0_5px_15px_rgba(0,0,0,0.5)]">
             無名<span className="text-brand-primary">伺服器</span>
           </h1>

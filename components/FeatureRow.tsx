@@ -1,5 +1,7 @@
 'use client';
 
+import Image from 'next/image';
+
 interface FeatureRowProps {
     label: string;
     desc: string;
@@ -30,9 +32,11 @@ export default function FeatureRow({ label, desc, img, reverse = false }: Featur
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-brand-primary/[0.02] blur-[100px] rounded-full"></div>
 
                 <div className="relative w-full h-full max-w-md aspect-square group">
-                    <img
+                    <Image
                         src={img}
                         alt={label}
+                        width={1024}
+                        height={1024}
                         className="w-full h-full object-contain drop-shadow-[0_20px_50px_rgba(255,125,0,0.1)] transform group-hover:scale-105 transition-all duration-1000"
                     />
                 </div>

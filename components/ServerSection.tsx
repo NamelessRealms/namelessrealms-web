@@ -4,6 +4,7 @@
 
 import { useState } from 'react';
 import { Copy, CheckCircle, Users, ExternalLink } from 'lucide-react';
+import Image from 'next/image';
 
 export default function ServerSection() {
   const [copied, setCopied] = useState(false);
@@ -78,7 +79,7 @@ export default function ServerSection() {
             {servers.map((s, i) => (
                 <div key={i} className="group relative bg-white/[0.01] border border-white/5 rounded-[4rem] overflow-hidden flex flex-col md:flex-row hover:bg-white/[0.03] transition-all duration-700 shadow-2xl backdrop-blur-sm">
                     <div className="flex-1 relative aspect-video md:aspect-auto overflow-hidden bg-gray-900">
-                        <img src={s.image} alt={s.name} className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-1000 opacity-50 grayscale group-hover:grayscale-0" />
+                        <Image src={s.image} alt={s.name} width={1920} height={1031} className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-1000 opacity-50 grayscale group-hover:grayscale-0" />
                         <div className="absolute inset-0 bg-gradient-to-r from-[#0c0c0c] via-transparent to-transparent hidden md:block"></div>
                         <div className="absolute top-8 left-8 z-20">
                             <span className="bg-brand-primary text-brand-dark font-black px-6 py-2 rounded-full text-xs uppercase italic tracking-widest shadow-2xl">

@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { Gift, ShieldCheck, Heart, Star, Award } from 'lucide-react';
+import Image from 'next/image';
 import Navbar from "@/components/Navbar";
 
 export default function SponsorPage() {
@@ -35,9 +36,11 @@ export default function SponsorPage() {
           </div>
           <div className="flex-1 w-full aspect-square bg-white/[0.02] border border-white/5 rounded-[4rem] flex items-center justify-center relative overflow-hidden group">
             <div className="absolute inset-0 bg-gradient-to-br from-brand-primary/10 via-transparent to-transparent animate-pulse opacity-50"></div>
-            <img
+            <Image
               src="/images/sponsor.png"
               alt="Sponsor"
+              width={891}
+              height={914}
               className="w-full h-full object-contain p-12 drop-shadow-[0_20px_60px_rgba(255,125,0,0.15)] transform group-hover:scale-105 transition-all duration-1000"
             />
           </div>
@@ -159,7 +162,7 @@ export default function SponsorPage() {
               <div className="space-y-6">
                 <div className="bg-[#003087]/10 border border-[#003087]/20 rounded-[2.5rem] p-10 flex flex-col items-center text-center space-y-6 group/paypal hover:bg-[#003087]/20 transition-all duration-500">
                   <div className="w-20 h-20 bg-[#003087] rounded-3xl flex items-center justify-center shadow-[0_0_30px_rgba(0,48,135,0.3)] group-hover/paypal:scale-110 transition-transform">
-                    <img src="https://www.paypalobjects.com/webstatic/mktg/logo/pp_cc_mark_111x69.jpg" alt="PayPal" className="w-12 object-contain brightness-0 invert" />
+                    <Image src="https://www.paypalobjects.com/webstatic/mktg/logo/pp_cc_mark_111x69.jpg" alt="PayPal" width={226} height={142} className="w-12 h-auto object-contain brightness-0 invert" />
                   </div>
                   <div className="space-y-2">
                     <h5 className="text-white font-black text-2xl italic tracking-tight">PayPal</h5>

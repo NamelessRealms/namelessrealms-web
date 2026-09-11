@@ -1,5 +1,7 @@
 'use client';
 
+import Image from 'next/image';
+
 export default function FeatureSection() {
   const features = [
     {
@@ -43,9 +45,11 @@ export default function FeatureSection() {
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-brand-primary/[0.03] blur-[120px] rounded-full"></div>
 
             <div className="relative w-full h-full max-w-lg aspect-square group">
-              <img
+              <Image
                 src={f.img}
                 alt={f.label}
+                width={1024}
+                height={1024}
                 className="w-full h-full object-contain drop-shadow-[0_20px_60px_rgba(255,125,0,0.15)] transform group-hover:scale-105 transition-all duration-1000"
               />
             </div>

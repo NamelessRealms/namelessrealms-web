@@ -1,10 +1,4 @@
 {
   "root": true,
-  "extends": "next/core-web-vitals",
-  // @next/next/no-img-element 於此關閉:架構師 2026-09-09 裁決① 丙。
-  // 既有 10 處 <img>(7 檔)本次未修,已列 backlog 建議(見 docs/tasks/F8-verification.md)。
-  // ⚠️ 此規則自此對全 repo 不被檢查——在該 backlog 完成前,這個洞一直在。
-  "rules": {
-    "@next/next/no-img-element": "off"
-  }
+  "extends": "next/core-web-vitals"
 }

@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Menu, X, LogOut, ChevronDown } from 'lucide-react';
 import { useSession, signIn, signOut } from "next-auth/react";
 
@@ -26,7 +27,7 @@ export default function Navbar() {
     <nav className="fixed top-6 left-1/2 -translate-x-1/2 w-[90%] max-w-7xl z-[100]">
       <div className="bg-brand-dark/40 backdrop-blur-xl border border-white/10 rounded-full px-6 py-3 flex items-center justify-between shadow-2xl">
         <Link href="/" className="flex items-center space-x-3">
-          <img src="/images/logo.png" alt="Nameless Realms Logo" className="w-10 h-10 object-contain" />
+          <Image src="/images/logo.png" alt="Nameless Realms Logo" width={1024} height={1024} className="w-10 h-10 object-contain" />
           <span className="text-white font-black text-xl tracking-tight uppercase italic">
             Nameless<span className="text-brand-primary">Realms</span>
           </span>
@@ -76,7 +77,9 @@ export default function Navbar() {
 
           {session && (
             <div className="flex items-center space-x-4 border-l border-white/10 pl-6">
-              <img src={session.user?.image || ""} alt="Avatar" className="w-8 h-8 rounded-full border border-brand-primary" />
+              {session.user?.image && (
+                <Image src={session.user.image} alt="Avatar" width={32} height={32} className="w-8 h-8 rounded-full border border-brand-primary" />
+              )}
               <button onClick={() => signOut()} className="text-white/40 hover:text-red-500 transition-colors">
                 <LogOut size={18} />
               </button>
