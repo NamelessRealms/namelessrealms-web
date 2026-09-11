@@ -13,6 +13,11 @@
 ⚠️ 目錄結構與原本的 `docs/tasks/F9-evidence/` **一致**，故 verification／audit／third-party
 三份報告裡寫的相對路徑（例 `before/home.png`）**直接對得上**，只需把前綴換成上面那個目錄。
 
+⚠️ **2026-09-12 收案時，F9 七件套與本證據目錄已一併移進 `docs/tasks/archive/`**（沿 F10 慣例）
+⇒ 三份報告內文寫的 `docs/tasks/F9-evidence/…` 與 `docs/tasks/F9-*.md`
+**現在都要多一段 `archive/`**（即 `docs/tasks/archive/F9-evidence/…`）。
+⛔ 報告內文**未逐處改寫**——大段中文能搬不重寫，改寫反而增加誤植風險（本 repo 有 `U+651A`→`U+651B` 的前例）。
+
 ## 有幾張、怎麼核對
 
 **28 張**，清單與 SHA-256 在 `_evidence/F9-png/SHA256SUMS.txt`（搬移**前**在 repo 內算的）。
