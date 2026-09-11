@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "dev-3100",
+      "runtimeExecutable": "yarn",
+      "runtimeArgs": ["dev", "-p", "3100"],
+      "port": 3100
+    }
+  ]
+}

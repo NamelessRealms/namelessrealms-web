@@ -113,18 +113,27 @@ Nameless Realms 的官方網站，用 Next.js 14 App Router 建置的**內容型
   ⚠️ 歷史留痕：`.eslintrc.json` 曾於 **2026-02-12** commit `5afda1a` 被刪除，此後 `next lint`
   會跳出互動式設定問卷、無 TTY 輸入即結束，**exit 0 但⛔ 一個檔案都沒 lint**（F1 實測發現）。
   ⇒ ✅ **自 F8 起，`yarn lint` 的 exit 0 是有效佐證** —— 但仍須連同負向對照一起引用。
-- ⚠️⚠️ **但⛔ 不得單獨寫「lint 通過」**：F8 依裁決① 丙**明確關閉了
-  `@next/next/no-img-element`**（既有 10 處 `<img>` 未修，見 backlog F9）
-  ⇒ 「CI／lint」欄一律據實寫「**綠，但 `no-img-element` 已 off、10 處未修**」。
-  ⚠️ 該規則在 F9 完成前**對全 repo 不被檢查**。
-- ⚠️ **一般原則（本 repo 已踩過五次）**：**`exit 0` ⛔ 不等於「該檢查真的跑了」**。
+- ✅ **`@next/next/no-img-element` 已於 2026-09-11（F9）重新生效**：F8 暫時關閉該規則的 `rules` 區塊
+  已從 `.eslintrc.json` 移除（檔案回到 `root` + `extends` 兩鍵），原本的 10 處 `<img>`（7 檔）已全部換成 `next/image`。
+- ⚠️⚠️ **但仍⛔ 不得單獨寫「lint 通過」**：`exit 0` ⛔ 不等於該檢查真的跑了
+  ⇒ 引用時一律連同兩個負向對照：
+  ① 改前用 `yarn lint --max-warnings 0 -c node_modules/eslint-config-next/core-web-vitals.js`
+     應 `exit=1`、10 命中（⚠️ 該規則在 preset 裡是 **warning** ⇒ `--max-warnings 0` 是讓它 fail 的必要條件）；
+  ② 任何時候在 `eslint.dirs` 內放一個含 `<img>` 的 canary 檔，`yarn lint --max-warnings 0`
+     應 `exit=1`、1 命中（**驗完必刪**，並確認它不在 `git status`）。
+- ⚠️ 全站已設 `images: { unoptimized: true }`（F9 裁決 ①丙）⇒ `next/image` ⛔ 不走最佳化端點、
+  ⛔ 不產生 `srcset`；**要開最佳化見地雷清單第 7 條**。
+- ⚠️ **一般原則（本 repo 已踩過七次）**：**`exit 0` ⛔ 不等於「該檢查真的跑了」**。
   ① `next lint` 無設定檔 ⇒ exit 0 但一個檔都沒 lint（即 F8 本身）；
   ② F4 的 `git check-ignore` 對**已追蹤檔**恆回「不忽略」（需 `--no-index`）；
   ③ `--debug` 的輸出**不寫 stdout**（寫在 `~/.claude/debug/`）⇒ grep stdout 得 0 命中；
   ④ **zsh 下 `${PIPESTATUS[0]}` 恆為空**（那是 bash 的變數；zsh 為 `pipestatus`、1-based）
      ⇒ 所有 `exit=` 欄位都沒量到，形式上卻「跑完了」；
   ⑤ `next lint -f json` **只列有問題的檔**（formatter 輸出前就濾掉沒有 messages 的檔）
-     ⇒ 拿它數檔案當覆蓋證明，會把「這檔很乾淨」與「這檔根本沒被 lint」混為一談。
+     ⇒ 拿它數檔案當覆蓋證明，會把「這檔很乾淨」與「這檔根本沒被 lint」混為一談；
+  ⑥ **`next lint --file` 給絕對路徑** ⇒ **靜默一個檔都不 lint**、仍回 `exit 0`
+     （同一個檔改成**相對路徑**就會噴錯。F9 稽核側原想拿它當唯讀槓桿，就是被這點作廢的）；
+  ⑦ **`next lint --dir` 指向會被 ignore 的目錄** ⇒ 同樣 `exit 0`（F9 稽核側實測）。
   ⇒ 凡把某指令當閘門，**必須有一次「它真的會 fail」的負向對照**，
   ⛔ 沒有負向對照就只是換了個指令。
   ⚠️ 且**負向對照本身也要能證明它量得準** —— 先故意讓指令失敗、確認取得非 0，再開始正式量測。
@@ -274,6 +283,28 @@ Nameless Realms 的官方網站，用 Next.js 14 App Router 建置的**內容型
    並附負向對照**（故意寫錯規則、證明測得出失敗），⛔ 沒有負向對照就只是換了個指令。
 6. **工作樹長期帶未 commit 改動**：2026-08-30 實查 `app/layout.tsx`、`app/staff/page.tsx`、
    `components/ServerSection.tsx` 三檔為 modified。⇒ **`git add .` 會把它們一起帶走**。
+   ⚠️ **F9（2026-09-11）新增經驗**：`components/ServerSection.tsx` 同時是 F9 的改動對象
+   ⇒ 架構師裁「只收 `<img>` 那幾行」，實作側是用 `git hash-object -w` + `git update-index --cacheinfo`
+   把「HEAD 版 + 換 img」寫進 index（⛔ 不用 `git add` / `git stash` / `git checkout` / `git add -p`）。
+   ⇒ **該檔會同時出現在 staged 與未 staged，這是預期的**，⛔ 不要「順手」把它們合起來。
+   判準：`git diff --cached --numstat <檔>` 應恰為 `2	1`，且 diff ⛔ 不得含工作樹舊改動的字串。
+
+7. ⚠️ **`output: 'standalone'` + production + 無 `sharp` ⇒ `/_next/image` 端點直接回 500**，
+   而且 **`yarn dev` 與 `yarn build` 都看不出來**。
+   依據：`node_modules/next/dist/server/image-optimizer.js` 第 497–500 行——
+   `if (showSharpMissingWarning && nextConfigOutput === "standalone") { log.error(…); throw new ImageError(500, "Internal Server Error") }`。
+   ⇒ 本 repo 因此在 `next.config.js` 設 `images: { unoptimized: true }`（F9 裁決 ①丙），
+   讓 `next/image` 原樣輸出 `src`、⛔ 不碰最佳化端點。
+   ⚠️ **要開圖片最佳化，必須先加 `sharp`，並同時補 `images.remotePatterns`**
+   （`/modServer` 與 `/sponsor` 都引外部 hostname）；⛔ 不得只把 `unoptimized` 拿掉——
+   本 repo **打 tag 就是發版且沒有 build CI 可擋**，這個 500 只有在正式 image 裡才會炸。
+
+8. ⚠️ **`git worktree` + symlink 的 `node_modules` + `output: 'standalone'` ⇒ 會清空主樹的 `node_modules`**。
+   `next build` 會在 `.next/standalone/node_modules` 放一個**指向主樹 `node_modules` 的 symlink**；
+   之後在同一棵 worktree 跑 `next dev`，它清 `.next` 時會**穿過那個 symlink 把主樹的 `node_modules` 整個清空**
+   （F9 本輪實際發生：`ls node_modules | wc -l` 由 351 變 **0**，dev 隨即 `Cannot find module 'next/dist/pages/_app'`）。
+   ⇒ **在 worktree 先 `rm .next/standalone/node_modules`，再 `rm -rf .next`，然後才跑 `next dev`**；
+   已中招的修復方式是回主樹跑 `yarn install --frozen-lockfile`（F9 實跑 `exit=0`、351 個項目回來）。
 
 ---
 
