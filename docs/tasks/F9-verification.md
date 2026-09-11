@@ -798,10 +798,69 @@ $ git status --porcelain data/    （無輸出）exit=0   ← canary 二次確�
 
 | # | 步驟 | 過線標準 | 結果 |
 |---|------|----------|------|
-| 1 | 在 repo 根目錄跑 `yarn dev -p 3100`（⚠️ 先確認 3100 空閒），開 `http://localhost:3100/` 確認首頁正常 | 終端無 `⨯`／`Error:`；首頁顯示 | ⏳ 待人工 |
-| 2 | 架構師開 `http://localhost:3100/api/auth/signin`，用**本人 Discord 帳號**登入 | 回到首頁、Navbar 右側出現頭像與登出鈕 | ⏳ 待人工 |
-| 3 | 架構師在 DevTools console 貼 `docs/tasks/F9-evidence/metrics.js` **全文**，把回傳字串存成 `docs/tasks/F9-evidence/after/home-signed-in.json`；另截一張 Navbar 區截圖 | 該 JSON 內有一筆 `alt: "Avatar"`，且 `rect.w`／`rect.h` = **32**、`borderRadius` 為圓（`9999px` 或 `50%`）、`currentSrc` 非空且 hostname 為 `cdn.discordapp.com`、`complete: true`、`naturalWidth` 非 0；console **⛔ 無** `Image is missing required "src" property` | ⏳ 待人工 |
-| 4 | 架構師登出 | Navbar 回到未登入樣式 | ⏳ 待人工 |
+| 1 | 在 repo 根目錄跑 `yarn dev -p 3100`（⚠️ 先確認 3100 空閒），開 `http://localhost:3100/` 確認首頁正常 | 終端無 `⨯`／`Error:`；首頁顯示 | ✅ **過**（主迴圈 2026-09-12 執行：3100 實測空閒；`curl` 首頁 HTTP 200、`/api/auth/signin` HTTP 200；dev 終端無 `⨯`／`Error:`） |
+| 2 | 架構師開 `http://localhost:3100/api/auth/signin`，用**本人 Discord 帳號**登入 | 回到首頁、Navbar 右側出現頭像與登出鈕 | ✅ **過**（架構師本人 2026-09-12 執行並回報「頭像有出現」） |
+| 3 | 架構師在 DevTools console 貼 `docs/tasks/F9-evidence/metrics.js` **全文**，把回傳字串存成 `docs/tasks/F9-evidence/after/home-signed-in.json`；另截一張 Navbar 區截圖 ⚠️ **實際落檔為 `after/team-signed-in.json`（`/team`，且已遮蔽機密，見下方說明）；Navbar 區截圖⛔ 未取，改以架構師目視回報 + 程式核對量測值替代，據實記錄** | 該 JSON 內有一筆 `alt: "Avatar"`，且 `rect.w`／`rect.h` = **32**、`borderRadius` 為圓（`9999px` 或 `50%`）、`currentSrc` 非空且 hostname 為 `cdn.discordapp.com`、`complete: true`、`naturalWidth` 非 0；console **⛔ 無** `Image is missing required "src" property` | ✅ **過**（八項逐項核對見下表；console 無該錯誤。⚠️ 截圖未取，據實記） |
+| 4 | 架構師登出 | Navbar 回到未登入樣式 | ✅ **過**（架構師本人 2026-09-12 執行並回報「是的」） |
+
+### E2E 實測結果（主迴圈帶架構師執行，2026-09-12；⚠️ 一次一步，逐步等回報）
+
+**步驟 3 的量測輸出已落檔**：`docs/tasks/F9-evidence/after/team-signed-in.json`
+⚠️ **⛔ 不是 `home-signed-in.json`**：架構師實際在 **`/team`** 執行（計畫原訂 `/`）⇒ 據實改名，並改與**同頁**的 `after/team.json` 對照，⛔ 非跨頁比較。
+
+**#9 Avatar 八項過線標準逐項（主迴圈以程式核對，非目視）**：
+
+| 判準 | 實測 | 結果 |
+|---|---|---|
+| `alt == "Avatar"` | `Avatar` | ✅ |
+| `rect.w == 32` | 32 | ✅ |
+| `rect.h == 32` | 32 | ✅ |
+| `borderRadius` 為圓 | `9999px` | ✅ |
+| `currentSrc` 非空 | 非空 | ✅ |
+| hostname == `cdn.discordapp.com` | `cdn.discordapp.com` | ✅ **與 `next-auth/providers/discord.js` 的檔案層期望值相符** |
+| `complete == true` | `true` | ✅ |
+| `naturalWidth` 非 0 | 128×128 | ✅ |
+
+**console（架構師提供截圖，主迴圈逐條查源）**：⛔ **無** `Image is missing required "src" property` ⇒ **過線**。
+實際出現的四條，逐條查證**皆非本次造成**：
+- 3 條 `ReferenceError`（`showOneChild` / `GmailAcrobatFteCoachmark` / `ch-content-script` / `content-script-idle`）
+  ⇒ **瀏覽器外掛的 content script**。佐證：四個名稱在 `app`／`components`／`data`／`lib`／`public`／`.next/static` 命中 **0**，
+  而同一掃描對正控字串 `next/image` 命中 **8 檔** ⇒ ⛔ 非空測。
+- 1 條 `grainy-gradients.vercel.app/noise.svg` **404** ⇒ 既有問題，`git show HEAD~3:components/ServerSection.tsx` 命中 1 ⇒ F9 前就有。
+
+**非頭像圖：登入態 vs 改後基線（同為 `/team`）** —— 12 個欄位 + `rect.w/h/y` 逐欄比對：
+- **差異 1 處**，且已查明**⛔ 非版面變動**：Navbar logo 的 `rect.y` = 159 vs 基線 37。
+  成因：`components/Navbar.tsx` 第 27 行是 `fixed`，而 `metrics.js` 對固定元素算的是 `r.top + scrollY`
+  ⇒ 架構師量測當下捲動了 122px（`159 - 37 = 122`）。⚠️ **這是量測腳本對 `fixed` 元素的已知特性**，⛔ 不是外觀改變。
+- `docHeight` 1870 = 基線 1870 ✅。
+- ⭐ **強化證據**：架構師視窗是 **2560×650**、基線是 **1280×900** —— **在完全不同的視窗尺寸下，
+  `team.png` 的 `rect` 仍為 `1022 × 574.88`、三張頭像仍為 `126×126`，與基線逐字相同** ⇒ 比原計畫的同尺寸對照更強。
+- 正控：拿**改前**基線比 `loading` 欄得 5 筆不同（`auto` → `lazy`）⇒ 比對器有效、⛔ 非空測。
+
+**Avatar 出現 2 筆**（`i:1`、`i:3`），**相異欄位只有 `i`**（DOM 索引），其餘逐欄相同
+⇒ 再次證實**每頁兩個 Navbar** 這個既有問題（⛔ 不在 F9 範圍，已列 backlog）。
+
+**肉眼觀察（工具驗不到的一項）**：架構師回報首頁大 logo 載入時**⛔ 沒有閃爍**
+⇒ 補上了「仍未驗清單」第 5 條（`loading="lazy"` 對首屏圖的肉眼閃爍，本輪工具因 `visibilityState` 恆為 `hidden` 而量不到）。
+
+---
+
+### ⛔⛔ 本步驟發現的一個**機密外洩風險**（⚠️ 計畫原文照做就會踩到）
+
+步驟 3 原訂「把回傳字串**存成** `docs/tasks/F9-evidence/after/home-signed-in.json`」並隨證據進版控。
+**實際執行後發現：Discord 頭像 URL 的路徑第一段就是 `ADMIN_DISCORD_ID` 本人的數字 ID**
+（`https://cdn.discordapp.com/avatars/<ADMIN_DISCORD_ID>/<hash>.png`）。
+主迴圈以程式比對確認該數字**與 `.env.local` 的 `ADMIN_DISCORD_ID` 完全相同**（⛔ 兩個值都未印出）。
+⇒ **照計畫原文執行會把鐵則 1 明列的機密永久寫進版本庫。**
+
+**處置**：落檔前遮蔽 —— `ADMIN_DISCORD_ID` → `<ADMIN_DISCORD_ID>`、頭像雜湊 → `<AVATAR_HASH>`（雜湊可反查帳號資產）。
+其餘欄位**逐字未動**。落檔後驗證：機密值殘留 **0**、遮蔽標記出現 **4** 次（正控，證明真的有遮到東西）。
+原始未遮蔽字串 **⛔ 未落檔於 repo 任何位置**。
+
+⚠️ **這個洞是規劃側、實作側、稽核側、第三方、主迴圈五方都漏掉的**
+—— 因為大家都在檢查「指令會不會空轉」，⛔ 沒有人問「**這條證據本身會不會挾帶機密**」。
+⇒ 建議立為判例與地雷：**凡要把『真機執行的原始輸出』落檔進版控，落檔前必須先對 `.env.local` 的每個值做一次比對掃描**，
+⛔ 不得因為「那只是一張圖的網址」就跳過。⏳ 由架構師裁是否寫進 `CLAUDE.md`。
 
 ⚠️ `cdn.discordapp.com` 是我從 `node_modules/next-auth/providers/discord.js` 第 18／21 行讀到的**檔案層事實**，
 實際回應⛔ 未實查 ⇒ 若拍到別的 hostname，**據實記錄**、⛔ 不改期望值當沒發生。
@@ -914,7 +973,7 @@ $ wc -c .next/server/middleware.js
 |---|---|---|
 | 1 | **正式 Docker 映像內的行為** | ⛔ 未跑 `docker build`、⛔ 未打 `v*` tag（鐵則 4）。裁決 ①丙 的效果只以 P3-b 的 **build 產物層 grep** 佐證 |
 | 2 | **#9 無改前對照** | 基線由主迴圈在未登入狀態拍（裁決 ④(b) 明文） |
-| 3 | **#9 改後本身** | ⏳ 待人工（見 E2E 表）——⛔ 我沒有驗過，⛔ 沒有用假帳號替代 |
+| 3 | **#9 改後本身** | ✅ **已驗（2026-09-12）**——架構師本人登入、主迴圈逐步帶跑，八項過線標準全過，量測落檔 `after/team-signed-in.json`（已遮蔽 `ADMIN_DISCORD_ID`）。⚠️ **⛔ 仍不是我（實作側）驗的**，⛔ 未用假帳號。⚠️ 兩項據實保留為未驗：**Navbar 區截圖⛔ 未取**（改以目視回報 + 程式核對量測值替代）、**⛔ 無改前對照**（裁決④甲(b) 明文，基線在未登入狀態拍） |
 | 4 | **Discord CDN 實際 hostname** | 只有 `ADMIN_DISCORD_ID` 本人登得進；期望值 `cdn.discordapp.com` 來自檔案層 |
 | 5 | **`loading="lazy"` 對首屏圖的「肉眼閃爍」** | ⚠️ **本輪工具限制**：可用的瀏覽器面板 `document.visibilityState` 恆為 `"hidden"`（我實測；同一張圖改成 `loading='eager'` 立刻載入、`complete=true`）⇒ Chrome 對隱藏分頁**不觸發 lazy 載入**，⛔ 無法做肉眼閃爍判斷。headless 擷取證明「最終都載入、版面不變」，但**「首屏會不會閃一下」仍未驗** ⇒ 建議併入 E2E 由架構師肉眼看一次。⛔ 不因此偷加 `priority` |
 | 6 | **`srcset` 的改前對照** | `<img>` 本來就沒有此屬性、`metrics.js` 也無此欄 ⇒ 只有改後現場觀察 |

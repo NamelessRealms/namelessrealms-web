@@ -1,0 +1,197 @@
+{
+ "page": "/team",
+ "viewport": [
+  2560,
+  650
+ ],
+ "docHeight": 1870,
+ "imgs": [
+  {
+   "i": 0,
+   "src": "/images/logo.png",
+   "currentSrc": "http://localhost:3100/images/logo.png",
+   "alt": "Nameless Realms Logo",
+   "complete": true,
+   "naturalWidth": 1024,
+   "naturalHeight": 1024,
+   "rect": {
+    "x": 661,
+    "y": 159,
+    "w": 40,
+    "h": 40
+   },
+   "objectFit": "contain",
+   "opacity": "1",
+   "filter": "none",
+   "borderRadius": "0px",
+   "padding": "0px",
+   "loading": "lazy",
+   "decoding": "async",
+   "className": "w-10 h-10 object-contain"
+  },
+  {
+   "i": 1,
+   "src": "https://cdn.discordapp.com/avatars/<ADMIN_DISCORD_ID>/<AVATAR_HASH>.png",
+   "currentSrc": "https://cdn.discordapp.com/avatars/<ADMIN_DISCORD_ID>/<AVATAR_HASH>.png",
+   "alt": "Avatar",
+   "complete": true,
+   "naturalWidth": 128,
+   "naturalHeight": 128,
+   "rect": {
+    "x": 1825,
+    "y": 163,
+    "w": 32,
+    "h": 32
+   },
+   "objectFit": "fill",
+   "opacity": "1",
+   "filter": "none",
+   "borderRadius": "9999px",
+   "padding": "0px",
+   "loading": "lazy",
+   "decoding": "async",
+   "className": "w-8 h-8 rounded-full border border-brand-primary"
+  },
+  {
+   "i": 2,
+   "src": "/images/logo.png",
+   "currentSrc": "http://localhost:3100/images/logo.png",
+   "alt": "Nameless Realms Logo",
+   "complete": true,
+   "naturalWidth": 1024,
+   "naturalHeight": 1024,
+   "rect": {
+    "x": 661,
+    "y": 159,
+    "w": 40,
+    "h": 40
+   },
+   "objectFit": "contain",
+   "opacity": "1",
+   "filter": "none",
+   "borderRadius": "0px",
+   "padding": "0px",
+   "loading": "lazy",
+   "decoding": "async",
+   "className": "w-10 h-10 object-contain"
+  },
+  {
+   "i": 3,
+   "src": "https://cdn.discordapp.com/avatars/<ADMIN_DISCORD_ID>/<AVATAR_HASH>.png",
+   "currentSrc": "https://cdn.discordapp.com/avatars/<ADMIN_DISCORD_ID>/<AVATAR_HASH>.png",
+   "alt": "Avatar",
+   "complete": true,
+   "naturalWidth": 128,
+   "naturalHeight": 128,
+   "rect": {
+    "x": 1825,
+    "y": 163,
+    "w": 32,
+    "h": 32
+   },
+   "objectFit": "fill",
+   "opacity": "1",
+   "filter": "none",
+   "borderRadius": "9999px",
+   "padding": "0px",
+   "loading": "lazy",
+   "decoding": "async",
+   "className": "w-8 h-8 rounded-full border border-brand-primary"
+  },
+  {
+   "i": 4,
+   "src": "/images/team.png",
+   "currentSrc": "http://localhost:3100/images/team.png",
+   "alt": "Team",
+   "complete": true,
+   "naturalWidth": 1920,
+   "naturalHeight": 1080,
+   "rect": {
+    "x": 765,
+    "y": 417,
+    "w": 1022,
+    "h": 574.88
+   },
+   "objectFit": "fill",
+   "opacity": "1",
+   "filter": "none",
+   "borderRadius": "0px",
+   "padding": "0px",
+   "loading": "lazy",
+   "decoding": "async",
+   "className": "w-full h-auto block transform group-hover:scale-105 transition-all duration-1000"
+  },
+  {
+   "i": 5,
+   "src": "/images/quasi.png",
+   "currentSrc": "http://localhost:3100/images/quasi.png",
+   "alt": "Yu // 無名",
+   "complete": true,
+   "naturalWidth": 512,
+   "naturalHeight": 512,
+   "rect": {
+    "x": 726,
+    "y": 1187,
+    "w": 126,
+    "h": 126
+   },
+   "objectFit": "cover",
+   "opacity": "1",
+   "filter": "none",
+   "borderRadius": "0px",
+   "padding": "0px",
+   "loading": "lazy",
+   "decoding": "async",
+   "className": "w-full h-full object-cover transform group-hover:scale-110 transition-all duration-700"
+  },
+  {
+   "i": 6,
+   "src": "/images/Moon_Flame.png",
+   "currentSrc": "http://localhost:3100/images/Moon_Flame.png",
+   "alt": "Moon_Flame // 月焰",
+   "complete": true,
+   "naturalWidth": 476,
+   "naturalHeight": 512,
+   "rect": {
+    "x": 1153,
+    "y": 1187,
+    "w": 126,
+    "h": 126
+   },
+   "objectFit": "cover",
+   "opacity": "1",
+   "filter": "none",
+   "borderRadius": "0px",
+   "padding": "0px",
+   "loading": "lazy",
+   "decoding": "async",
+   "className": "w-full h-full object-cover transform group-hover:scale-110 transition-all duration-700"
+  },
+  {
+   "i": 7,
+   "src": "/images/liujuhsin.png",
+   "currentSrc": "http://localhost:3100/images/liujuhsin.png",
+   "alt": "liujuhsin // 嚕嚕訊",
+   "complete": true,
+   "naturalWidth": 512,
+   "naturalHeight": 512,
+   "rect": {
+    "x": 1579,
+    "y": 1187,
+    "w": 126,
+    "h": 126
+   },
+   "objectFit": "cover",
+   "opacity": "1",
+   "filter": "none",
+   "borderRadius": "0px",
+   "padding": "0px",
+   "loading": "lazy",
+   "decoding": "async",
+   "className": "w-full h-full object-cover transform group-hover:scale-110 transition-all duration-700"
+  }
+ ],
+ "_note": "⚠️ 本檔的 Avatar 兩筆 src/currentSrc 已遮蔽：Discord 頭像 URL 內含 ADMIN_DISCORD_ID（鐵則 1 列為機密，⛔ 不得入文件）。遮蔽僅限該 ID 與頭像雜湊，其餘欄位逐字未動。原始值⛔ 未落檔於 repo 任何位置。",
+ "_capturedBy": "架構師本人（ADMIN_DISCORD_ID）於登入狀態，2026-09-12",
+ "_page_deviation": "⚠️ 計畫原訂在 `/` 執行，實際在 `/team` 執行 ⇒ 檔名由 home-signed-in 改為 team-signed-in，並改與 after/team.json 對照（同頁、⛔ 非跨頁）。"
+}
