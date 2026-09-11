@@ -1,0 +1,21 @@
+yarn run v1.22.18
+warning ../../../../package.json: No license field
+$ next dev -p 3100
+   ▲ Next.js 14.1.0
+   - Local:        http://localhost:3100
+   - Environments: .env.local
+
+ ✓ Ready in 722ms
+ ○ Compiling / ...
+Browserslist: browsers data (caniuse-lite) is 8 months old. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+ ✓ Compiled / in 2.5s (635 modules)
+ ✓ Compiled in 125ms (319 modules)
+ ✓ Compiled /api/auth/[...nextauth] in 398ms (542 modules)
+ ✓ Compiled /sponsor in 136ms (863 modules)
+ ✓ Compiled /team in 94ms (869 modules)
+ ✓ Compiled /modServer in 115ms (881 modules)
+ ✓ Compiled in 250ms (660 modules)
+ ✓ Compiled /api/auth/[...nextauth] in 155ms (562 modules)
+ ✓ Compiled in 188ms (895 modules)

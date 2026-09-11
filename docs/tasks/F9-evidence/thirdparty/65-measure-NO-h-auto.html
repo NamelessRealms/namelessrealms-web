@@ -1,0 +1,77 @@
+<html><head></head><body><pre id="o">{
+ "docHeight": 2528,
+ "imgs": [
+  {
+   "i": 0,
+   "alt": "Nameless Realms Logo",
+   "cls": "w-10 h-10 object-contain",
+   "x": 89,
+   "y": 37,
+   "w": 40,
+   "h": 40,
+   "cssH": "40px",
+   "cssW": "40px",
+   "attrW": "1024",
+   "attrH": "1024",
+   "nw": 1024,
+   "nh": 1024
+  },
+  {
+   "i": 1,
+   "alt": "Nameless Realms Logo",
+   "cls": "w-10 h-10 object-contain",
+   "x": 89,
+   "y": 37,
+   "w": 40,
+   "h": 40,
+   "cssH": "40px",
+   "cssW": "40px",
+   "attrW": "1024",
+   "attrH": "1024",
+   "nw": 1024,
+   "nh": 1024
+  },
+  {
+   "i": 2,
+   "alt": "Sponsor",
+   "cls": "w-full h-full object-contain p-12 drop-shadow-[0_20px_60px_rgba(255,125,0,0.15)] transform group-hover:scale-105 transition-all duration-1000",
+   "x": 672,
+   "y": 193,
+   "w": 583,
+   "h": 583,
+   "cssH": "583px",
+   "cssW": "583px",
+   "attrW": "891",
+   "attrH": "914",
+   "nw": 891,
+   "nh": 914
+  },
+  {
+   "i": 3,
+   "alt": "PayPal",
+   "cls": "w-12 object-contain brightness-0 invert",
+   "x": 888,
+   "y": 1917,
+   "w": 48,
+   "h": 30.16,
+   "cssH": "30.1562px",
+   "cssW": "48px",
+   "attrW": "226",
+   "attrH": "142",
+   "nw": 226,
+   "nh": 142
+  }
+ ]
+}</pre><script>
+const f=document.createElement('iframe');
+f.style.cssText='width:1280px;height:900px;border:0';
+f.src='/sponsor';
+f.onload=()=>{setTimeout(()=>{try{
+const d=f.contentDocument, w=f.contentWindow;
+const out=[...d.querySelectorAll('img')].map((im,i)=>{const r=im.getBoundingClientRect();const cs=w.getComputedStyle(im);return {i,alt:im.alt,cls:im.className,x:Math.round(r.left+w.scrollX),y:Math.round(r.top+w.scrollY),w:Math.round(r.width*100)/100,h:Math.round(r.height*100)/100,cssH:cs.height,cssW:cs.width,attrW:im.getAttribute('width'),attrH:im.getAttribute('height'),nw:im.naturalWidth,nh:im.naturalHeight};});
+const pre=[...d.styleSheets].length;
+document.getElementById('o').textContent=JSON.stringify({docHeight:d.documentElement.scrollHeight,imgs:out},null,1);
+w.console.warn('TPCTRL-has either width or height modified, but not the other');w.console.error('TPCTRL-Image is missing required "src" property');}catch(e){document.getElementById('o').textContent='ERR '+e;}},3000);};
+document.body.appendChild(f);
+</script><iframe src="/sponsor" style="width: 1280px; height: 900px; border: 0px;"></iframe>
+</body></html>

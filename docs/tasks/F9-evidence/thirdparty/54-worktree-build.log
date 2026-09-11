@@ -1,0 +1,49 @@
+yarn run v1.22.18
+warning ../../../../package.json: No license field
+$ next build
+   ▲ Next.js 14.1.0
+   - Environments: .env.local
+
+   Creating an optimized production build ...
+Browserslist: browsers data (caniuse-lite) is 8 months old. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+Browserslist: caniuse-lite is outdated. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+ ✓ Compiled successfully
+   Linting and checking validity of types ...
+   Collecting page data ...
+   Generating static pages (0/13) ...
+   Generating static pages (3/13) 
+   Generating static pages (6/13) 
+   Generating static pages (9/13) 
+ ✓ Generating static pages (13/13) 
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                              Size     First Load JS
+┌ ○ /                                    4.66 kB         110 kB
+├ ○ /_not-found                          879 B          85.1 kB
+├ λ /api/apply                           0 B                0 B
+├ λ /api/auth/[...nextauth]              0 B                0 B
+├ ○ /apply                               1.31 kB        85.6 kB
+├ ○ /donate                              140 B          84.4 kB
+├ ○ /launcher                            6.2 kB          112 kB
+├ ○ /modServer                           3.78 kB         109 kB
+├ ○ /sponsor                             4.63 kB         110 kB
+├ ○ /staff                               140 B          84.4 kB
+├ ○ /team                                2.44 kB         108 kB
+└ ○ /voteModpack                         4.88 kB         110 kB
++ First Load JS shared by all            84.2 kB
+  ├ chunks/274072ba-bccf0bf3230a793a.js  53.4 kB
+  ├ chunks/940-4674e27baec80c45.js       28.9 kB
+  └ other shared chunks (total)          1.96 kB
+
+
+ƒ Middleware                             74.9 kB
+
+○  (Static)   prerendered as static content
+λ  (Dynamic)  server-rendered on demand using Node.js
+
+Done in 6.71s.

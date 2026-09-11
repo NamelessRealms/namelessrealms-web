@@ -1,0 +1,15 @@
+[21948:9406136:0912/004715.921146:INFO:components/enterprise/browser/controller/chrome_browser_cloud_management_controller.cc:241] No machine level policy manager exists.
+[21953:9406224:0912/004716.092745:ERROR:ui/display/mac/cv_display_link_mac.mm:195] CVDisplayLinkCreateWithCGDisplay failed. CVReturn: -6670
+[21953:9406224:0912/004716.093099:ERROR:ui/display/mac/cv_display_link_mac.mm:195] CVDisplayLinkCreateWithCGDisplay failed. CVReturn: -6670
+[21953:9406224:0912/004716.093148:ERROR:ui/display/mac/cv_display_link_mac.mm:195] CVDisplayLinkCreateWithCGDisplay failed. CVReturn: -6670
+[21953:9406224:0912/004716.093198:ERROR:ui/display/mac/cv_display_link_mac.mm:195] CVDisplayLinkCreateWithCGDisplay failed. CVReturn: -6670
+[21953:9406224:0912/004716.093250:ERROR:ui/display/mac/cv_display_link_mac.mm:195] CVDisplayLinkCreateWithCGDisplay failed. CVReturn: -6670
+[21953:9406224:0912/004716.093295:ERROR:ui/display/mac/cv_display_link_mac.mm:195] CVDisplayLinkCreateWithCGDisplay failed. CVReturn: -6670
+[21953:9406224:0912/004716.610841:ERROR:ui/display/mac/cv_display_link_mac.mm:195] CVDisplayLinkCreateWithCGDisplay failed. CVReturn: -6670
+Trying to load the allocator multiple times. This is *not* supported.
+[21948:9406136:0912/004717.554968:INFO:CONSOLE:10] "TPCTRL-has either width or height modified, but not the other", source: http://localhost:3100/tpMeasure.html (10)
+[21948:9406136:0912/004717.555034:INFO:CONSOLE:35] "TPCTRL-Image is missing required "src" property", source: webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js (35)
+[21948:9406180:0912/004717.573129:ERROR:base/process/process_mac.cc:53] task_policy_set TASK_CATEGORY_POLICY: (os/kern) invalid argument (4)
+[21948:9406180:0912/004717.573160:ERROR:base/process/process_mac.cc:98] task_policy_set TASK_SUPPRESSION_POLICY: (os/kern) invalid argument (4)
+[21954:9406217:0912/004719.828193:WARNING:net/extras/sqlite/sqlite_persistent_store_backend_base.cc:181] Failed to post task from FlushAndNotifyInBackground@net/extras/sqlite/sqlite_persistent_store_backend_base.cc:231 to client_task_runner_.
+[21954:9406217:0912/004719.828379:WARNING:net/extras/sqlite/sqlite_persistent_store_backend_base.cc:181] Failed to post task from FlushAndNotifyInBackground@net/extras/sqlite/sqlite_persistent_store_backend_base.cc:231 to client_task_runner_.

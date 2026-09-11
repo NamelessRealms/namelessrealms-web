@@ -1,0 +1,6 @@
+A 1280 2524 ch 3
+B 1280 2524 ch 3
+size 1280 x 2524 totalPx 3230720
+diffPx 0 pct 0.0
+bbox x0,y0,x1,y1 = 1000000000 1000000000 -1 -1
+maxChannelSumDelta 0
