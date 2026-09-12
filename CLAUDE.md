@@ -341,7 +341,7 @@ Nameless Realms 的官方網站，用 Next.js 14 App Router 建置的**內容型
 | `docs/tasks/` | docs/tasks/ | 交接五件套骨架；收案後移 `docs/tasks/archive/` | 執行任務時 |
 | `.claude/` | 根目錄 | 三個 subagent + 六支 hook + `settings.json` + `/go` | Claude Code 自動讀 |
 
-⚠️ **知識庫（vault）在**：`/Users/quasi-pc/Documents/Obsidian Vault/Claude 知識庫/namelessrealms-web/`
+⚠️ **知識庫（vault）在**：`/Users/quasi-pc/Documents/NamelessRealmsVault/vaults/namelessrealms-web/`
 （`WORKSPACE.md` / `BACKLOG.md` / `DECISIONS-ARCHIVE.md`）。
 ⛔ **實作側與稽核側讀不到 vault**（`vault-guard` 強制）——任務包必須自我完備，
 **但抄的來源限 repo**（架構師 2026-09-02 裁決 D-1）：本專案⛔ 沒有 spec 主檔，

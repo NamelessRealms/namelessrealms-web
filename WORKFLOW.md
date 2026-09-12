@@ -215,7 +215,7 @@
 給協作 Claude 的開場指示（可放 Project 指示或每次貼）：
 
 ```
-每個新對話先用 Filesystem 讀 /Users/quasi-pc/Documents/Obsidian Vault/Claude 知識庫/namelessrealms-web/WORKSPACE.md，再處理正題。
+每個新對話先用 Filesystem 讀 /Users/quasi-pc/Documents/NamelessRealmsVault/vaults/namelessrealms-web/WORKSPACE.md，再處理正題。
 讀完用 3-5 行複述當前狀態：目前里程碑、上一個完成的子任務、
 進行中/下一個子任務、活躍 Blockers。我確認無誤後才開工。
 ```
@@ -374,7 +374,7 @@
 
 ## 二、知識庫(vault)
 
-`/Users/quasi-pc/Documents/Obsidian Vault/Claude 知識庫/namelessrealms-web/`
+`/Users/quasi-pc/Documents/NamelessRealmsVault/vaults/namelessrealms-web/`
 
 | 檔 | 內容 |
 |----|------|
