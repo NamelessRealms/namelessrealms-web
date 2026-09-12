@@ -4,7 +4,6 @@
 > 換新專案、換新對話，靠這份把工作方式一次帶過去，不用重講。
 > 這是**流程契約**，不是技術規格；技術看 spec / CLAUDE.md；機器路徑與環境速查看 WORKSPACE.md。
 > **管道以檔案為主**：三方透過 repo `docs/tasks/` 內的落檔交接，你不轉貼內容、只做一句話觸發。
-> （若協作 Claude 沒有 Filesystem 存取權，退回附錄的「貼上備援模式」。）
 
 ---
 
@@ -215,7 +214,7 @@
 給協作 Claude 的開場指示（可放 Project 指示或每次貼）：
 
 ```
-每個新對話先用 Filesystem 讀 /Users/quasi-pc/Documents/NamelessRealmsVault/vaults/namelessrealms-web/WORKSPACE.md，再處理正題。
+每個新對話先讀 /Users/quasi-pc/Documents/NamelessRealmsVault/vaults/namelessrealms-web/WORKSPACE.md，再處理正題。
 讀完用 3-5 行複述當前狀態：目前里程碑、上一個完成的子任務、
 進行中/下一個子任務、活躍 Blockers。我確認無誤後才開工。
 ```
@@ -330,28 +329,15 @@
 - **轉寫紀律（協作 Claude 編輯知識庫時遵守）**：
   - 檔案讀取偶見中文顯示為 `�`——多為傳輸假象非真損壞。編輯前先位元組核對，勿照顯示「修」字。
   - **大段中文由模型轉寫有真實的鄰碼漂移風險**（實測：目標字誤出為相鄰碼位、字形極相似、肉眼難審）。
-    紀律：**能搬就不要重寫**——大檔重組一律 `move_file` 搬整檔、再以短錨點 `edit_file` 微調，
-    讓內文不經過模型；非重寫不可時先 `dryRun` 驗證。
-    `edit_file` 不匹配即失敗（安全失敗），優於 `write_file` 直接覆寫。
-
----
-
-## 附錄：貼上備援模式（協作 Claude 無 Filesystem 時）
-
-檔案管道退化為人工轉貼，其餘規則不變：
-
-1. 協作 Claude 產任務包時以「**給 Claude Code 的文字：**」區塊輸出
-   （copy-paste-ready 純文字碼區塊，不用 markdown 表格混排），你整包貼給 Claude Code。
-2. Plan、驗收報告由你貼回給協作 Claude 審。
-3. CI 結果改貼截圖，協作 Claude 逐 job 目視（有 Filesystem 時以 run 連結 + 報告內
-   實際輸出為據，不需截圖）。
-4. PROGRESS.md 更新方式改為協作 Claude 產**替換整份的新檔**、你覆蓋。
+    紀律：**能搬就不要重寫**——大檔重組一律用 Bash `cp` / `mv` 搬整檔、再以短錨點 `Edit` 微調，
+    讓內文不經過模型；非重寫不可時改後以 `diff` 對照原檔逐行驗。
+    `Edit` 錨點不匹配即失敗（安全失敗），優於 `Write` 整份覆寫。
 
 ---
 
 # ⚠️ 本專案在地化附註（namelessrealms-web，2026-08-30 導入模板包時附加）
 
-> 本節**覆蓋**上方通用內文中與此衝突的敘述。上方原文一字未改（模板包原版），
+> 本節**覆蓋**上方通用內文中與此衝突的敘述。上方原文已依 NR-D13 系列裁決修改（⛔ 不再是模板包原版），
 > 差異集中寫在這裡，方便日後與模板包對帳。
 
 ## 一、⛔ 本專案沒有 build/lint CI
