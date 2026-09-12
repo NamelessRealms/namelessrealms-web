@@ -25,7 +25,7 @@
 - `git push` **一律擋**，⛔ 無例外通道
 - `{代號}-plan-review.md` / `{代號}-verification-audit.md` 只有**規劃側／稽核側／主迴圈**寫得到，⛔ 實作側不可
 - 稽核側**只寫得到自己那一份 audit 檔**，連 `git add` 都擋（它動到現場，「聲稱 vs 現場」的比較基準就毀了）
-- **Obsidian Vault 只有主迴圈碰得到**，三個 subagent 一律擋
+- **vault（NamelessRealmsVault）只有主迴圈碰得到**，三個 subagent 一律擋
 - 每次開對話自動自檢上面四道還在不在——⚠️ **全過時是安靜的**，沒訊息 = 正常
 
 ⛔ **四件套已變五件套**：任務包 → plan → plan-review → verification → **verification-audit**。
@@ -325,7 +325,7 @@
   spec 各章）依任務主題**按需點讀，不預讀**——常駐塞太多會拖慢每次回應。
 - **檔案分工**：WORKSPACE = 路徑/管道/環境/下一棒交接（會頻繁更新）；
   PROGRESS = 里程碑進度/Blockers/Decision Log；DECISIONS-ARCHIVE = 已收案決策的凍結存放。
-- **就地編輯**：協作 Claude 用 Filesystem 直接編輯知識庫檔，你在 Obsidian 看 diff。
+- **就地編輯**：協作 Claude = Claude Code 主迴圈，直接就地編輯 vault 檔，你在 Obsidian 看 diff。
   知識庫更新在**里程碑/收案節點**做，不逐句即時維護。
 - **轉寫紀律（協作 Claude 編輯知識庫時遵守）**：
   - 檔案讀取偶見中文顯示為 `�`——多為傳輸假象非真損壞。編輯前先位元組核對，勿照顯示「修」字。
