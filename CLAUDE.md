@@ -156,8 +156,8 @@ Nameless Realms 的官方網站，用 Next.js 14 App Router 建置的**內容型
 
 ## 全組織服務目錄（共用，`@` 引用）
 
-> 📦 誰負責什麼、要新建跨專案性質的能力（API / 帳號 / 資料庫 / 監控 / Discord…）前**先查它**、歸別家的⛔ 不自建 —— 組織層單一來源，⛔ 不在本檔重抄。
-@/Users/quasi-pc/Documents/NamelessRealmsVault/templates/shared/service-catalog.md
+> 📦 誰負責什麼、要新建跨專案性質的能力（API / 帳號 / 資料庫 / 監控 / Discord…）前**先查它**、歸別家的⛔ 不自建 —— 組織層單一來源（repo 內副本由 `upgrade.sh` 同步，⛔ 不手改），⛔ 不在本檔重抄。
+@.claude/shared/service-catalog.md
 
 ---
 
@@ -192,9 +192,9 @@ Nameless Realms 的官方網站，用 Next.js 14 App Router 建置的**內容型
 
 ## 撰碼規約（防止長出已清掉的債）
 
-> 📦 **§A 檔案可讀性 / §C 去重 / §D 防護欄 與共用 checklist 條為全組織共用**，由下一行 `@` 引用組織層單一來源（Yu 2026-09-12 裁「引用模式・甲」）；
-> 七 repo 讀到同一份文字，⛔ 不在本檔重抄、⛔ 不得就地修改 —— 要改走 NR 流程。專案專屬的例外與登記寫在下方「本地附註」。
-@/Users/quasi-pc/Documents/NamelessRealmsVault/templates/shared/coding-rules.md
+> 📦 **§A 檔案可讀性 / §C 去重 / §D 防護欄 與共用 checklist 條為全組織共用**，由下一行 `@` 引用 repo 內副本 `.claude/shared/`（單一來源是模板包 `shared/`，副本由 `upgrade.sh` 機械同步；⚠️ 必須相對路徑 —— 絕對／專案外路徑會被靜默跳過，web 2026-09-13 實測；Yu 2026-09-12 裁「引用模式・甲」）；
+> 七 repo 讀到同一份文字，⛔ 不在本檔重抄、⛔ 不得就地修改（含副本 —— 改了 `upgrade.sh --check` 會標「自改」） —— 要改走 NR 流程。專案專屬的例外與登記寫在下方「本地附註」。
+@.claude/shared/coding-rules.md
 
 **B. 元件結構**
 - ⛔ **禁止元件內嵌套 `renderXxx()` 回傳 JSX**——這是單檔膨脹的頭號主因。需拆獨立子元件檔。
